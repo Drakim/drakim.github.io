@@ -2768,6 +2768,11 @@ Lambda.array = function(it) {
 	while(tmp.hasNext()) a.push(tmp.next());
 	return a;
 };
+Lambda.fold = function(it,f,first) {
+	var tmp = $iterator(it)();
+	while(tmp.hasNext()) first = f(tmp.next(),first);
+	return first;
+};
 var List = function() {
 	this.length = 0;
 };
@@ -2918,6 +2923,13 @@ Std.parseInt = function(x) {
 		return null;
 	}
 	return v;
+};
+Std.random = function(x) {
+	if(x <= 0) {
+		return 0;
+	} else {
+		return Math.floor(Math.random() * x);
+	}
 };
 var StringBuf = function() {
 	this.b = "";
@@ -5089,7 +5101,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 834191;
+	this.version = 624677;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
@@ -45437,7 +45449,31 @@ haxe_lang_Iterable.prototype = {
 	iterator: null
 	,__class__: haxe_lang_Iterable
 };
+var piratepig_Money = function() { };
+$hxClasses["piratepig.Money"] = piratepig_Money;
+piratepig_Money.__name__ = ["piratepig","Money"];
+piratepig_Money.initialize = function() {
+	piratepig_Money.Score = new openfl_text_TextField();
+	piratepig_Money.currentScore = 0;
+	piratepig_Money.Score.set_x(200);
+	piratepig_Money.Score.set_width(200);
+	piratepig_Money.Score.set_y(12);
+	piratepig_Money.Score.set_selectable(false);
+	var defaultFormat = new openfl_text_TextFormat(null,60,0);
+	defaultFormat.align = 4;
+	piratepig_Money.Score.set_defaultTextFormat(defaultFormat);
+	piratepig_Money.Score.set_filters([new openfl_filters_BlurFilter(1.5,1.5),new openfl_filters_DropShadowFilter(1,45,0,0.2,5,5)]);
+	piratepig_Money.Score.set_embedFonts(true);
+	piratepig_PiratePigGame.game.addChild(piratepig_Money.Score);
+	piratepig_Money.currentScore = 0;
+	piratepig_Money.Score.set_text("0");
+};
+piratepig_Money.add = function(_money) {
+	piratepig_Money.currentScore += _money;
+	piratepig_Money.Score.set_text(Std.string(piratepig_Money.currentScore));
+};
 var piratepig_PiratePigGame = function() {
+	piratepig_PiratePigGame.game = this;
 	openfl_display_Sprite.call(this);
 	this.initialize();
 	this.construct();
@@ -45451,14 +45487,11 @@ piratepig_PiratePigGame.prototype = $extend(openfl_display_Sprite.prototype,{
 	,Cursor: null
 	,CursorHighlight: null
 	,IntroSound: null
-	,Logo: null
-	,Score: null
 	,Sound3: null
 	,Sound4: null
 	,Sound5: null
 	,TileContainer: null
 	,currentScale: null
-	,currentScore: null
 	,cacheMouse: null
 	,cursorPosition: null
 	,needToCheckMatches: null
@@ -45467,19 +45500,7 @@ piratepig_PiratePigGame.prototype = $extend(openfl_display_Sprite.prototype,{
 	,usedTiles: null
 	,luckyWheel: null
 	,construct: function() {
-		this.Logo.smoothing = true;
-		this.addChild(this.Logo);
-		var defaultFormat = new openfl_text_TextFormat(null,60,0);
-		defaultFormat.align = 4;
 		var contentWidth = 75 * piratepig_PiratePigGame.NUM_COLUMNS;
-		this.Score.set_x(contentWidth - 200);
-		this.Score.set_width(200);
-		this.Score.set_y(12);
-		this.Score.set_selectable(false);
-		this.Score.set_defaultTextFormat(defaultFormat);
-		this.Score.set_filters([new openfl_filters_BlurFilter(1.5,1.5),new openfl_filters_DropShadowFilter(1,45,0,0.2,5,5)]);
-		this.Score.set_embedFonts(true);
-		this.addChild(this.Score);
 		this.Background.set_y(85);
 		this.Background.get_graphics().beginFill(16777215,0.4);
 		this.Background.get_graphics().drawRect(0,0,contentWidth,75 * piratepig_PiratePigGame.NUM_ROWS);
@@ -45504,19 +45525,15 @@ piratepig_PiratePigGame.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(this.CursorHighlight);
 	}
 	,initialize: function() {
+		piratepig_Money.initialize();
 		this.currentScale = 1;
-		this.currentScore = 0;
 		this.usedTiles = [];
 		this.Background = new openfl_display_Sprite();
-		this.Logo = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/logo.png"));
-		this.Score = new openfl_text_TextField();
 		this.TileContainer = new openfl_display_Sprite();
 		this.Cursor = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/cursor.png"));
 		this.CursorHighlight = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/cursor_highlight.png"));
 	}
 	,newGame: function() {
-		this.currentScore = 0;
-		this.Score.set_text("0");
 		this.luckyWheel = new piratepig_Wheel();
 		this.addChild(this.luckyWheel);
 		this.IntroSound.play();
@@ -45626,42 +45643,16 @@ piratepig_Tile.prototype = $extend(openfl_display_Sprite.prototype,{
 	,__class__: piratepig_Tile
 });
 var piratepig_Wheel = function() {
-	this.size = 200;
+	this.speed = 0;
+	this.size = 500;
 	this.yPos = 0;
 	this.xPos = 0;
 	this.rot = 0;
 	openfl_display_Sprite.call(this);
-	this.xPos = 100;
-	this.yPos = 100;
-	var slotData = [{ name : "devil", color : 16711680, size : 0.30},{ name : "jackpot", color : 4521728, size : 0.30},{ name : "chicken duck woman thing", color : 4474111, size : 0.10},{ name : "win", color : 11184810, size : 0.30}];
-	var slots = slotData.length;
-	var length = this.size / 2;
-	var angle = 0.0;
-	var index = 0;
-	while(index < slots) {
-		this.get_graphics().beginFill(slotData[index].color,1);
-		var stepsize = Math.PI * 2 * slotData[index].size;
-		var xPoint = 0 * Math.cos(angle);
-		var yPoint = 0 * Math.sin(angle);
-		this.get_graphics().moveTo(xPoint + this.size / 2,yPoint + this.size / 2);
-		this.get_graphics().lineTo(xPoint + this.size / 2,yPoint + this.size / 2);
-		var xPoint1 = length * Math.cos(angle);
-		var yPoint1 = length * Math.sin(angle);
-		this.get_graphics().lineTo(xPoint1 + this.size / 2,yPoint1 + this.size / 2);
-		var step = 0.0;
-		while(step < stepsize) {
-			var xPoint2 = length * Math.cos(angle + step);
-			var yPoint2 = length * Math.sin(angle + step);
-			this.get_graphics().lineTo(xPoint2 + this.size / 2,yPoint2 + this.size / 2);
-			step += 0.01;
-		}
-		var xPoint3 = length * Math.cos(angle + stepsize);
-		var yPoint3 = length * Math.sin(angle + stepsize);
-		this.get_graphics().lineTo(xPoint3 + this.size / 2,yPoint3 + this.size / 2);
-		this.get_graphics().endFill();
-		angle += stepsize;
-		++index;
-	}
+	this.xPos = 200.0;
+	this.yPos = 400.0;
+	this.speed = 0.1;
+	this.generateWheel();
 };
 $hxClasses["piratepig.Wheel"] = piratepig_Wheel;
 piratepig_Wheel.__name__ = ["piratepig","Wheel"];
@@ -45671,13 +45662,97 @@ piratepig_Wheel.prototype = $extend(openfl_display_Sprite.prototype,{
 	,xPos: null
 	,yPos: null
 	,size: null
+	,speed: null
+	,generateWheel: function() {
+		var sourceData = [{ label : "", color : 4495684, size : 0.03},{ label : "", color : 16776960, size : 0.01},{ label : "", color : 2237098, size : 0.07}];
+		var slotData = [];
+		var leftover = 1.0 - Lambda.fold(sourceData,function(a,b) {
+			return a.size + b;
+		},0.0);
+		var normalSize = 0.04;
+		var normalNeeded = Math.floor(leftover / 0.04);
+		normalSize = 0.04 + (leftover - 0.04 * normalNeeded) / normalNeeded;
+		var specialSpacing = Math.floor(normalNeeded / sourceData.length);
+		var specialIndex = 0;
+		var toggle = true;
+		var i = 0;
+		while(i < normalNeeded) {
+			if(i % specialSpacing == 0 && specialIndex < sourceData.length) {
+				slotData.push(sourceData[specialIndex]);
+				++specialIndex;
+			}
+			slotData.push({ label : i < 9?"0" + i:"" + i, color : toggle?0:16711680, size : normalSize});
+			++i;
+			toggle = !toggle;
+		}
+		var slots = slotData.length;
+		var length = this.size / 2;
+		var angle = 0.0;
+		var index = 0;
+		while(index < slots) {
+			this.get_graphics().beginFill(slotData[index].color,1);
+			var stepsize = Math.PI * 2 * slotData[index].size;
+			var xPoint = 0 * Math.cos(angle);
+			var yPoint = 0 * Math.sin(angle);
+			this.get_graphics().moveTo(xPoint + this.size / 2,yPoint + this.size / 2);
+			this.get_graphics().lineTo(xPoint + this.size / 2,yPoint + this.size / 2);
+			var xPoint1 = length * Math.cos(angle);
+			var yPoint1 = length * Math.sin(angle);
+			this.get_graphics().lineTo(xPoint1 + this.size / 2,yPoint1 + this.size / 2);
+			var step = 0.0;
+			while(step < stepsize) {
+				var xPoint2 = length * Math.cos(angle + step);
+				var yPoint2 = length * Math.sin(angle + step);
+				this.get_graphics().lineTo(xPoint2 + this.size / 2,yPoint2 + this.size / 2);
+				step += 0.01;
+			}
+			var xPoint3 = length * Math.cos(angle + stepsize);
+			var yPoint3 = length * Math.sin(angle + stepsize);
+			this.get_graphics().lineTo(xPoint3 + this.size / 2,yPoint3 + this.size / 2);
+			this.get_graphics().endFill();
+			if(slotData[index].label != "") {
+				var textField = new openfl_text_TextField();
+				var defaultFormat = new openfl_text_TextFormat(null,36,16777215);
+				defaultFormat.align = 3;
+				textField.set_defaultTextFormat(defaultFormat);
+				textField.set_embedFonts(true);
+				textField.set_text(slotData[index].label);
+				var textWidth = Math.ceil(textField.get_textWidth());
+				var textHeight = Math.ceil(textField.get_textHeight());
+				var textFieldBitmapData = new openfl_display_BitmapData(textWidth,textHeight,true,0);
+				var matrix = new openfl_geom_Matrix();
+				matrix.translate(-textWidth / 2,-textHeight / 2);
+				matrix.rotate(angle + stepsize / 2 + Math.PI / 2);
+				matrix.translate(textWidth / 2,textHeight / 2);
+				textFieldBitmapData.draw(textField,matrix);
+				var textFieldBitmap = new openfl_display_Bitmap(textFieldBitmapData);
+				textFieldBitmap.smoothing = true;
+				var fontlength = length - 20;
+				var xPoint4 = fontlength * Math.cos(angle + stepsize / 2);
+				var yPoint4 = fontlength * Math.sin(angle + stepsize / 2);
+				textFieldBitmap.set_x(xPoint4 + this.size / 2 - textWidth / 2);
+				textFieldBitmap.set_y(yPoint4 + this.size / 2 - textHeight / 2);
+				this.addChild(textFieldBitmap);
+			}
+			angle += stepsize;
+			++index;
+		}
+	}
+	,cash: function() {
+		piratepig_Money.add(500);
+	}
 	,update: function() {
-		this.rot = this.rot + 0.05;
+		this.rot = this.rot + this.speed;
 		var matrix = new openfl_geom_Matrix();
 		matrix.translate(-(this.size / 2),-(this.size / 2));
 		matrix.rotate(this.rot);
 		matrix.translate(this.xPos,this.yPos);
 		this.get_transform().set_matrix(matrix);
+		this.speed -= 0.0005;
+		if(this.speed < 0) {
+			this.cash();
+			this.speed = Std.random(10) / 100 + 0.1;
+		}
 	}
 	,__class__: piratepig_Wheel
 });
