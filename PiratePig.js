@@ -13,7 +13,7 @@ var ApplicationMain = function() { };
 $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "125", company : "OpenFL", file : "PiratePig", fps : 60, name : "Pirate Pig", orientation : "", packageName : "org.openfl.samples.piratepig", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "Pirate Pig", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "1", company : "OpenFL", file : "PiratePig", fps : 60, name : "Pirate Pig", orientation : "", packageName : "org.openfl.samples.piratepig", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "Pirate Pig", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.create = function() {
 	var app = new openfl_display_Application();
@@ -2919,13 +2919,6 @@ Std.parseInt = function(x) {
 	}
 	return v;
 };
-Std.random = function(x) {
-	if(x <= 0) {
-		return 0;
-	} else {
-		return Math.floor(Math.random() * x);
-	}
-};
 var StringBuf = function() {
 	this.b = "";
 };
@@ -5096,7 +5089,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 514215;
+	this.version = 834191;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
@@ -45640,12 +45633,14 @@ var piratepig_Wheel = function() {
 	openfl_display_Sprite.call(this);
 	this.xPos = 100;
 	this.yPos = 100;
+	var slotData = [{ name : "devil", color : 16711680, size : 0.30},{ name : "jackpot", color : 4521728, size : 0.30},{ name : "chicken duck woman thing", color : 4474111, size : 0.10},{ name : "win", color : 11184810, size : 0.30}];
+	var slots = slotData.length;
 	var length = this.size / 2;
 	var angle = 0.0;
-	var stepsize = Math.PI / 3.;
-	var amount = 0;
-	while(amount < 6) {
-		this.get_graphics().beginFill(Std.random(16777215),1);
+	var index = 0;
+	while(index < slots) {
+		this.get_graphics().beginFill(slotData[index].color,1);
+		var stepsize = Math.PI * 2 * slotData[index].size;
 		var xPoint = 0 * Math.cos(angle);
 		var yPoint = 0 * Math.sin(angle);
 		this.get_graphics().moveTo(xPoint + this.size / 2,yPoint + this.size / 2);
@@ -45653,12 +45648,19 @@ var piratepig_Wheel = function() {
 		var xPoint1 = length * Math.cos(angle);
 		var yPoint1 = length * Math.sin(angle);
 		this.get_graphics().lineTo(xPoint1 + this.size / 2,yPoint1 + this.size / 2);
-		angle += stepsize;
-		var xPoint2 = length * Math.cos(angle);
-		var yPoint2 = length * Math.sin(angle);
-		this.get_graphics().lineTo(xPoint2 + this.size / 2,yPoint2 + this.size / 2);
+		var step = 0.0;
+		while(step < stepsize) {
+			var xPoint2 = length * Math.cos(angle + step);
+			var yPoint2 = length * Math.sin(angle + step);
+			this.get_graphics().lineTo(xPoint2 + this.size / 2,yPoint2 + this.size / 2);
+			step += 0.01;
+		}
+		var xPoint3 = length * Math.cos(angle + stepsize);
+		var yPoint3 = length * Math.sin(angle + stepsize);
+		this.get_graphics().lineTo(xPoint3 + this.size / 2,yPoint3 + this.size / 2);
 		this.get_graphics().endFill();
-		++amount;
+		angle += stepsize;
+		++index;
 	}
 };
 $hxClasses["piratepig.Wheel"] = piratepig_Wheel;
