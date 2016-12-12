@@ -13,7 +13,7 @@ var ApplicationMain = function() { };
 $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "136", company : "OpenFL", file : "PiratePig", fps : 60, name : "Pirate Pig", orientation : "", packageName : "org.openfl.samples.piratepig", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "Pirate Pig", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "1", company : "Kim", file : "DevilsOwnLuck", fps : 60, name : "Devil's Own Luck", orientation : "", packageName : "com.example.myapp", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "Devil's Own Luck", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.create = function() {
 	var app = new openfl_display_Application();
@@ -25,28 +25,18 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.create(ApplicationMain.config);
 	var urls = [];
 	var types = [];
-	urls.push("images/background_tile.png");
+	urls.push("images/bag.png");
 	types.push("IMAGE");
-	urls.push("images/center_bottom.png");
+	urls.push("images/card.png");
 	types.push("IMAGE");
-	urls.push("images/cursor.png");
-	types.push("IMAGE");
-	urls.push("images/cursor_highlight.png");
-	types.push("IMAGE");
-	urls.push("images/game_bear.png");
-	types.push("IMAGE");
-	urls.push("images/game_bunny_02.png");
-	types.push("IMAGE");
-	urls.push("images/game_carrot.png");
-	types.push("IMAGE");
-	urls.push("images/game_lemon.png");
-	types.push("IMAGE");
-	urls.push("images/game_panda.png");
-	types.push("IMAGE");
-	urls.push("images/game_piratePig.png");
+	urls.push("images/emblem.png");
 	types.push("IMAGE");
 	urls.push("images/logo.png");
 	types.push("IMAGE");
+	urls.push("images/marker.png");
+	types.push("IMAGE");
+	urls.push("images/reaper.png");
+	types.push("IMAGE");
 	urls.push("sounds/3.mp3");
 	types.push("SOUND");
 	urls.push("sounds/4.mp3");
@@ -57,34 +47,14 @@ ApplicationMain.create = function() {
 	types.push("MUSIC");
 	urls.push("sounds/3.mp3");
 	types.push("MUSIC");
-	urls.push("sounds/3.ogg");
-	types.push("SOUND");
-	urls.push("sounds/3.wav");
-	types.push("SOUND");
 	urls.push("sounds/4.mp3");
 	types.push("MUSIC");
-	urls.push("sounds/4.ogg");
-	types.push("SOUND");
-	urls.push("sounds/4.wav");
-	types.push("SOUND");
 	urls.push("sounds/5.mp3");
 	types.push("MUSIC");
-	urls.push("sounds/5.ogg");
-	types.push("SOUND");
-	urls.push("sounds/5.wav");
-	types.push("SOUND");
 	urls.push("sounds/theme.mp3");
 	types.push("MUSIC");
-	urls.push("sounds/theme.ogg");
-	types.push("SOUND");
-	urls.push("sounds/theme.wav");
-	types.push("SOUND");
 	urls.push("sounds/whiff.mp3");
 	types.push("MUSIC");
-	urls.push("sounds/whiff.ogg");
-	types.push("SOUND");
-	urls.push("sounds/whiff.wav");
-	types.push("SOUND");
 	if(ApplicationMain.config.assetsPrefix != null) {
 		var _g1 = 0;
 		var _g = urls.length;
@@ -1921,41 +1891,33 @@ openfl_display_Sprite.prototype = $extend(openfl_display_DisplayObjectContainer.
 	,__class__: openfl_display_Sprite
 	,__properties__: $extend(openfl_display_DisplayObjectContainer.prototype.__properties__,{get_graphics:"get_graphics"})
 });
-var piratepig_PiratePig = function() {
+var devilsownluck_DevilsOwnLuck = function() {
 	openfl_display_Sprite.call(this);
 	this.initialize();
 	this.construct();
-	this.resize(this.stage.stageWidth,this.stage.stageHeight);
-	this.stage.addEventListener("resize",$bind(this,this.stage_onResize));
 };
-$hxClasses["piratepig.PiratePig"] = piratepig_PiratePig;
-piratepig_PiratePig.__name__ = ["piratepig","PiratePig"];
-piratepig_PiratePig.__super__ = openfl_display_Sprite;
-piratepig_PiratePig.prototype = $extend(openfl_display_Sprite.prototype,{
+$hxClasses["devilsownluck.DevilsOwnLuck"] = devilsownluck_DevilsOwnLuck;
+devilsownluck_DevilsOwnLuck.__name__ = ["devilsownluck","DevilsOwnLuck"];
+devilsownluck_DevilsOwnLuck.__super__ = openfl_display_Sprite;
+devilsownluck_DevilsOwnLuck.prototype = $extend(openfl_display_Sprite.prototype,{
 	Game: null
 	,construct: function() {
 		this.addChild(this.Game);
 	}
 	,initialize: function() {
-		this.Game = new piratepig_PiratePigGame();
+		this.Game = new devilsownluck_DevilsOwnLuckGame();
 	}
-	,resize: function(newWidth,newHeight) {
-		this.Game.resize(newWidth,newHeight);
-	}
-	,stage_onResize: function(event) {
-		this.resize(this.stage.stageWidth,this.stage.stageHeight);
-	}
-	,__class__: piratepig_PiratePig
+	,__class__: devilsownluck_DevilsOwnLuck
 });
 var DocumentClass = function() {
 	openfl_Lib.current.addChild(this);
-	piratepig_PiratePig.call(this);
+	devilsownluck_DevilsOwnLuck.call(this);
 	this.dispatchEvent(new openfl_events_Event("addedToStage",false,false));
 };
 $hxClasses["DocumentClass"] = DocumentClass;
 DocumentClass.__name__ = ["DocumentClass"];
-DocumentClass.__super__ = piratepig_PiratePig;
-DocumentClass.prototype = $extend(piratepig_PiratePig.prototype,{
+DocumentClass.__super__ = devilsownluck_DevilsOwnLuck;
+DocumentClass.prototype = $extend(devilsownluck_DevilsOwnLuck.prototype,{
 	__class__: DocumentClass
 });
 var lime_AssetLibrary = function() {
@@ -2049,394 +2011,199 @@ var DefaultAssetLibrary = function() {
 	this.className = new haxe_ds_StringMap();
 	lime_AssetLibrary.call(this);
 	var _this = this.path;
-	if(__map_reserved["images/background_tile.png"] != null) {
-		_this.setReserved("images/background_tile.png","images/background_tile.png");
+	if(__map_reserved["images/bag.png"] != null) {
+		_this.setReserved("images/bag.png","images/bag.png");
 	} else {
-		_this.h["images/background_tile.png"] = "images/background_tile.png";
+		_this.h["images/bag.png"] = "images/bag.png";
 	}
 	var _this1 = this.type;
 	var value = "IMAGE";
-	if(__map_reserved["images/background_tile.png"] != null) {
-		_this1.setReserved("images/background_tile.png",value);
+	if(__map_reserved["images/bag.png"] != null) {
+		_this1.setReserved("images/bag.png",value);
 	} else {
-		_this1.h["images/background_tile.png"] = value;
+		_this1.h["images/bag.png"] = value;
 	}
 	var _this2 = this.path;
-	if(__map_reserved["images/center_bottom.png"] != null) {
-		_this2.setReserved("images/center_bottom.png","images/center_bottom.png");
+	if(__map_reserved["images/card.png"] != null) {
+		_this2.setReserved("images/card.png","images/card.png");
 	} else {
-		_this2.h["images/center_bottom.png"] = "images/center_bottom.png";
+		_this2.h["images/card.png"] = "images/card.png";
 	}
 	var _this3 = this.type;
 	var value1 = "IMAGE";
-	if(__map_reserved["images/center_bottom.png"] != null) {
-		_this3.setReserved("images/center_bottom.png",value1);
+	if(__map_reserved["images/card.png"] != null) {
+		_this3.setReserved("images/card.png",value1);
 	} else {
-		_this3.h["images/center_bottom.png"] = value1;
+		_this3.h["images/card.png"] = value1;
 	}
 	var _this4 = this.path;
-	if(__map_reserved["images/cursor.png"] != null) {
-		_this4.setReserved("images/cursor.png","images/cursor.png");
+	if(__map_reserved["images/emblem.png"] != null) {
+		_this4.setReserved("images/emblem.png","images/emblem.png");
 	} else {
-		_this4.h["images/cursor.png"] = "images/cursor.png";
+		_this4.h["images/emblem.png"] = "images/emblem.png";
 	}
 	var _this5 = this.type;
 	var value2 = "IMAGE";
-	if(__map_reserved["images/cursor.png"] != null) {
-		_this5.setReserved("images/cursor.png",value2);
+	if(__map_reserved["images/emblem.png"] != null) {
+		_this5.setReserved("images/emblem.png",value2);
 	} else {
-		_this5.h["images/cursor.png"] = value2;
+		_this5.h["images/emblem.png"] = value2;
 	}
 	var _this6 = this.path;
-	if(__map_reserved["images/cursor_highlight.png"] != null) {
-		_this6.setReserved("images/cursor_highlight.png","images/cursor_highlight.png");
+	if(__map_reserved["images/logo.png"] != null) {
+		_this6.setReserved("images/logo.png","images/logo.png");
 	} else {
-		_this6.h["images/cursor_highlight.png"] = "images/cursor_highlight.png";
+		_this6.h["images/logo.png"] = "images/logo.png";
 	}
 	var _this7 = this.type;
 	var value3 = "IMAGE";
-	if(__map_reserved["images/cursor_highlight.png"] != null) {
-		_this7.setReserved("images/cursor_highlight.png",value3);
+	if(__map_reserved["images/logo.png"] != null) {
+		_this7.setReserved("images/logo.png",value3);
 	} else {
-		_this7.h["images/cursor_highlight.png"] = value3;
+		_this7.h["images/logo.png"] = value3;
 	}
 	var _this8 = this.path;
-	if(__map_reserved["images/game_bear.png"] != null) {
-		_this8.setReserved("images/game_bear.png","images/game_bear.png");
+	if(__map_reserved["images/marker.png"] != null) {
+		_this8.setReserved("images/marker.png","images/marker.png");
 	} else {
-		_this8.h["images/game_bear.png"] = "images/game_bear.png";
+		_this8.h["images/marker.png"] = "images/marker.png";
 	}
 	var _this9 = this.type;
 	var value4 = "IMAGE";
-	if(__map_reserved["images/game_bear.png"] != null) {
-		_this9.setReserved("images/game_bear.png",value4);
+	if(__map_reserved["images/marker.png"] != null) {
+		_this9.setReserved("images/marker.png",value4);
 	} else {
-		_this9.h["images/game_bear.png"] = value4;
+		_this9.h["images/marker.png"] = value4;
 	}
 	var _this10 = this.path;
-	if(__map_reserved["images/game_bunny_02.png"] != null) {
-		_this10.setReserved("images/game_bunny_02.png","images/game_bunny_02.png");
+	if(__map_reserved["images/reaper.png"] != null) {
+		_this10.setReserved("images/reaper.png","images/reaper.png");
 	} else {
-		_this10.h["images/game_bunny_02.png"] = "images/game_bunny_02.png";
+		_this10.h["images/reaper.png"] = "images/reaper.png";
 	}
 	var _this11 = this.type;
 	var value5 = "IMAGE";
-	if(__map_reserved["images/game_bunny_02.png"] != null) {
-		_this11.setReserved("images/game_bunny_02.png",value5);
+	if(__map_reserved["images/reaper.png"] != null) {
+		_this11.setReserved("images/reaper.png",value5);
 	} else {
-		_this11.h["images/game_bunny_02.png"] = value5;
+		_this11.h["images/reaper.png"] = value5;
 	}
 	var _this12 = this.path;
-	if(__map_reserved["images/game_carrot.png"] != null) {
-		_this12.setReserved("images/game_carrot.png","images/game_carrot.png");
+	if(__map_reserved.sound3 != null) {
+		_this12.setReserved("sound3","sounds/3.mp3");
 	} else {
-		_this12.h["images/game_carrot.png"] = "images/game_carrot.png";
+		_this12.h["sound3"] = "sounds/3.mp3";
 	}
 	var _this13 = this.type;
-	var value6 = "IMAGE";
-	if(__map_reserved["images/game_carrot.png"] != null) {
-		_this13.setReserved("images/game_carrot.png",value6);
+	var value6 = "SOUND";
+	if(__map_reserved.sound3 != null) {
+		_this13.setReserved("sound3",value6);
 	} else {
-		_this13.h["images/game_carrot.png"] = value6;
+		_this13.h["sound3"] = value6;
 	}
 	var _this14 = this.path;
-	if(__map_reserved["images/game_lemon.png"] != null) {
-		_this14.setReserved("images/game_lemon.png","images/game_lemon.png");
+	if(__map_reserved.sound4 != null) {
+		_this14.setReserved("sound4","sounds/4.mp3");
 	} else {
-		_this14.h["images/game_lemon.png"] = "images/game_lemon.png";
+		_this14.h["sound4"] = "sounds/4.mp3";
 	}
 	var _this15 = this.type;
-	var value7 = "IMAGE";
-	if(__map_reserved["images/game_lemon.png"] != null) {
-		_this15.setReserved("images/game_lemon.png",value7);
+	var value7 = "SOUND";
+	if(__map_reserved.sound4 != null) {
+		_this15.setReserved("sound4",value7);
 	} else {
-		_this15.h["images/game_lemon.png"] = value7;
+		_this15.h["sound4"] = value7;
 	}
 	var _this16 = this.path;
-	if(__map_reserved["images/game_panda.png"] != null) {
-		_this16.setReserved("images/game_panda.png","images/game_panda.png");
+	if(__map_reserved.sound5 != null) {
+		_this16.setReserved("sound5","sounds/5.mp3");
 	} else {
-		_this16.h["images/game_panda.png"] = "images/game_panda.png";
+		_this16.h["sound5"] = "sounds/5.mp3";
 	}
 	var _this17 = this.type;
-	var value8 = "IMAGE";
-	if(__map_reserved["images/game_panda.png"] != null) {
-		_this17.setReserved("images/game_panda.png",value8);
+	var value8 = "SOUND";
+	if(__map_reserved.sound5 != null) {
+		_this17.setReserved("sound5",value8);
 	} else {
-		_this17.h["images/game_panda.png"] = value8;
+		_this17.h["sound5"] = value8;
 	}
 	var _this18 = this.path;
-	if(__map_reserved["images/game_piratePig.png"] != null) {
-		_this18.setReserved("images/game_piratePig.png","images/game_piratePig.png");
+	if(__map_reserved.soundTheme != null) {
+		_this18.setReserved("soundTheme","sounds/theme.mp3");
 	} else {
-		_this18.h["images/game_piratePig.png"] = "images/game_piratePig.png";
+		_this18.h["soundTheme"] = "sounds/theme.mp3";
 	}
 	var _this19 = this.type;
-	var value9 = "IMAGE";
-	if(__map_reserved["images/game_piratePig.png"] != null) {
-		_this19.setReserved("images/game_piratePig.png",value9);
+	var value9 = "MUSIC";
+	if(__map_reserved.soundTheme != null) {
+		_this19.setReserved("soundTheme",value9);
 	} else {
-		_this19.h["images/game_piratePig.png"] = value9;
+		_this19.h["soundTheme"] = value9;
 	}
 	var _this20 = this.path;
-	if(__map_reserved["images/logo.png"] != null) {
-		_this20.setReserved("images/logo.png","images/logo.png");
+	if(__map_reserved["sounds/3.mp3"] != null) {
+		_this20.setReserved("sounds/3.mp3","sounds/3.mp3");
 	} else {
-		_this20.h["images/logo.png"] = "images/logo.png";
+		_this20.h["sounds/3.mp3"] = "sounds/3.mp3";
 	}
 	var _this21 = this.type;
-	var value10 = "IMAGE";
-	if(__map_reserved["images/logo.png"] != null) {
-		_this21.setReserved("images/logo.png",value10);
+	var value10 = "MUSIC";
+	if(__map_reserved["sounds/3.mp3"] != null) {
+		_this21.setReserved("sounds/3.mp3",value10);
 	} else {
-		_this21.h["images/logo.png"] = value10;
+		_this21.h["sounds/3.mp3"] = value10;
 	}
 	var _this22 = this.path;
-	if(__map_reserved.sound3 != null) {
-		_this22.setReserved("sound3","sounds/3.mp3");
+	if(__map_reserved["sounds/4.mp3"] != null) {
+		_this22.setReserved("sounds/4.mp3","sounds/4.mp3");
 	} else {
-		_this22.h["sound3"] = "sounds/3.mp3";
+		_this22.h["sounds/4.mp3"] = "sounds/4.mp3";
 	}
 	var _this23 = this.type;
-	var value11 = "SOUND";
-	if(__map_reserved.sound3 != null) {
-		_this23.setReserved("sound3",value11);
+	var value11 = "MUSIC";
+	if(__map_reserved["sounds/4.mp3"] != null) {
+		_this23.setReserved("sounds/4.mp3",value11);
 	} else {
-		_this23.h["sound3"] = value11;
+		_this23.h["sounds/4.mp3"] = value11;
 	}
 	var _this24 = this.path;
-	if(__map_reserved.sound4 != null) {
-		_this24.setReserved("sound4","sounds/4.mp3");
+	if(__map_reserved["sounds/5.mp3"] != null) {
+		_this24.setReserved("sounds/5.mp3","sounds/5.mp3");
 	} else {
-		_this24.h["sound4"] = "sounds/4.mp3";
+		_this24.h["sounds/5.mp3"] = "sounds/5.mp3";
 	}
 	var _this25 = this.type;
-	var value12 = "SOUND";
-	if(__map_reserved.sound4 != null) {
-		_this25.setReserved("sound4",value12);
+	var value12 = "MUSIC";
+	if(__map_reserved["sounds/5.mp3"] != null) {
+		_this25.setReserved("sounds/5.mp3",value12);
 	} else {
-		_this25.h["sound4"] = value12;
+		_this25.h["sounds/5.mp3"] = value12;
 	}
 	var _this26 = this.path;
-	if(__map_reserved.sound5 != null) {
-		_this26.setReserved("sound5","sounds/5.mp3");
+	if(__map_reserved["sounds/theme.mp3"] != null) {
+		_this26.setReserved("sounds/theme.mp3","sounds/theme.mp3");
 	} else {
-		_this26.h["sound5"] = "sounds/5.mp3";
+		_this26.h["sounds/theme.mp3"] = "sounds/theme.mp3";
 	}
 	var _this27 = this.type;
-	var value13 = "SOUND";
-	if(__map_reserved.sound5 != null) {
-		_this27.setReserved("sound5",value13);
+	var value13 = "MUSIC";
+	if(__map_reserved["sounds/theme.mp3"] != null) {
+		_this27.setReserved("sounds/theme.mp3",value13);
 	} else {
-		_this27.h["sound5"] = value13;
+		_this27.h["sounds/theme.mp3"] = value13;
 	}
 	var _this28 = this.path;
-	if(__map_reserved.soundTheme != null) {
-		_this28.setReserved("soundTheme","sounds/theme.mp3");
+	if(__map_reserved["sounds/whiff.mp3"] != null) {
+		_this28.setReserved("sounds/whiff.mp3","sounds/whiff.mp3");
 	} else {
-		_this28.h["soundTheme"] = "sounds/theme.mp3";
+		_this28.h["sounds/whiff.mp3"] = "sounds/whiff.mp3";
 	}
 	var _this29 = this.type;
 	var value14 = "MUSIC";
-	if(__map_reserved.soundTheme != null) {
-		_this29.setReserved("soundTheme",value14);
-	} else {
-		_this29.h["soundTheme"] = value14;
-	}
-	var _this30 = this.path;
-	if(__map_reserved["sounds/3.mp3"] != null) {
-		_this30.setReserved("sounds/3.mp3","sounds/3.mp3");
-	} else {
-		_this30.h["sounds/3.mp3"] = "sounds/3.mp3";
-	}
-	var _this31 = this.type;
-	var value15 = "MUSIC";
-	if(__map_reserved["sounds/3.mp3"] != null) {
-		_this31.setReserved("sounds/3.mp3",value15);
-	} else {
-		_this31.h["sounds/3.mp3"] = value15;
-	}
-	var _this32 = this.path;
-	if(__map_reserved["sounds/3.ogg"] != null) {
-		_this32.setReserved("sounds/3.ogg","sounds/3.ogg");
-	} else {
-		_this32.h["sounds/3.ogg"] = "sounds/3.ogg";
-	}
-	var _this33 = this.type;
-	var value16 = "SOUND";
-	if(__map_reserved["sounds/3.ogg"] != null) {
-		_this33.setReserved("sounds/3.ogg",value16);
-	} else {
-		_this33.h["sounds/3.ogg"] = value16;
-	}
-	var _this34 = this.path;
-	if(__map_reserved["sounds/3.wav"] != null) {
-		_this34.setReserved("sounds/3.wav","sounds/3.wav");
-	} else {
-		_this34.h["sounds/3.wav"] = "sounds/3.wav";
-	}
-	var _this35 = this.type;
-	var value17 = "SOUND";
-	if(__map_reserved["sounds/3.wav"] != null) {
-		_this35.setReserved("sounds/3.wav",value17);
-	} else {
-		_this35.h["sounds/3.wav"] = value17;
-	}
-	var _this36 = this.path;
-	if(__map_reserved["sounds/4.mp3"] != null) {
-		_this36.setReserved("sounds/4.mp3","sounds/4.mp3");
-	} else {
-		_this36.h["sounds/4.mp3"] = "sounds/4.mp3";
-	}
-	var _this37 = this.type;
-	var value18 = "MUSIC";
-	if(__map_reserved["sounds/4.mp3"] != null) {
-		_this37.setReserved("sounds/4.mp3",value18);
-	} else {
-		_this37.h["sounds/4.mp3"] = value18;
-	}
-	var _this38 = this.path;
-	if(__map_reserved["sounds/4.ogg"] != null) {
-		_this38.setReserved("sounds/4.ogg","sounds/4.ogg");
-	} else {
-		_this38.h["sounds/4.ogg"] = "sounds/4.ogg";
-	}
-	var _this39 = this.type;
-	var value19 = "SOUND";
-	if(__map_reserved["sounds/4.ogg"] != null) {
-		_this39.setReserved("sounds/4.ogg",value19);
-	} else {
-		_this39.h["sounds/4.ogg"] = value19;
-	}
-	var _this40 = this.path;
-	if(__map_reserved["sounds/4.wav"] != null) {
-		_this40.setReserved("sounds/4.wav","sounds/4.wav");
-	} else {
-		_this40.h["sounds/4.wav"] = "sounds/4.wav";
-	}
-	var _this41 = this.type;
-	var value20 = "SOUND";
-	if(__map_reserved["sounds/4.wav"] != null) {
-		_this41.setReserved("sounds/4.wav",value20);
-	} else {
-		_this41.h["sounds/4.wav"] = value20;
-	}
-	var _this42 = this.path;
-	if(__map_reserved["sounds/5.mp3"] != null) {
-		_this42.setReserved("sounds/5.mp3","sounds/5.mp3");
-	} else {
-		_this42.h["sounds/5.mp3"] = "sounds/5.mp3";
-	}
-	var _this43 = this.type;
-	var value21 = "MUSIC";
-	if(__map_reserved["sounds/5.mp3"] != null) {
-		_this43.setReserved("sounds/5.mp3",value21);
-	} else {
-		_this43.h["sounds/5.mp3"] = value21;
-	}
-	var _this44 = this.path;
-	if(__map_reserved["sounds/5.ogg"] != null) {
-		_this44.setReserved("sounds/5.ogg","sounds/5.ogg");
-	} else {
-		_this44.h["sounds/5.ogg"] = "sounds/5.ogg";
-	}
-	var _this45 = this.type;
-	var value22 = "SOUND";
-	if(__map_reserved["sounds/5.ogg"] != null) {
-		_this45.setReserved("sounds/5.ogg",value22);
-	} else {
-		_this45.h["sounds/5.ogg"] = value22;
-	}
-	var _this46 = this.path;
-	if(__map_reserved["sounds/5.wav"] != null) {
-		_this46.setReserved("sounds/5.wav","sounds/5.wav");
-	} else {
-		_this46.h["sounds/5.wav"] = "sounds/5.wav";
-	}
-	var _this47 = this.type;
-	var value23 = "SOUND";
-	if(__map_reserved["sounds/5.wav"] != null) {
-		_this47.setReserved("sounds/5.wav",value23);
-	} else {
-		_this47.h["sounds/5.wav"] = value23;
-	}
-	var _this48 = this.path;
-	if(__map_reserved["sounds/theme.mp3"] != null) {
-		_this48.setReserved("sounds/theme.mp3","sounds/theme.mp3");
-	} else {
-		_this48.h["sounds/theme.mp3"] = "sounds/theme.mp3";
-	}
-	var _this49 = this.type;
-	var value24 = "MUSIC";
-	if(__map_reserved["sounds/theme.mp3"] != null) {
-		_this49.setReserved("sounds/theme.mp3",value24);
-	} else {
-		_this49.h["sounds/theme.mp3"] = value24;
-	}
-	var _this50 = this.path;
-	if(__map_reserved["sounds/theme.ogg"] != null) {
-		_this50.setReserved("sounds/theme.ogg","sounds/theme.ogg");
-	} else {
-		_this50.h["sounds/theme.ogg"] = "sounds/theme.ogg";
-	}
-	var _this51 = this.type;
-	var value25 = "SOUND";
-	if(__map_reserved["sounds/theme.ogg"] != null) {
-		_this51.setReserved("sounds/theme.ogg",value25);
-	} else {
-		_this51.h["sounds/theme.ogg"] = value25;
-	}
-	var _this52 = this.path;
-	if(__map_reserved["sounds/theme.wav"] != null) {
-		_this52.setReserved("sounds/theme.wav","sounds/theme.wav");
-	} else {
-		_this52.h["sounds/theme.wav"] = "sounds/theme.wav";
-	}
-	var _this53 = this.type;
-	var value26 = "SOUND";
-	if(__map_reserved["sounds/theme.wav"] != null) {
-		_this53.setReserved("sounds/theme.wav",value26);
-	} else {
-		_this53.h["sounds/theme.wav"] = value26;
-	}
-	var _this54 = this.path;
 	if(__map_reserved["sounds/whiff.mp3"] != null) {
-		_this54.setReserved("sounds/whiff.mp3","sounds/whiff.mp3");
+		_this29.setReserved("sounds/whiff.mp3",value14);
 	} else {
-		_this54.h["sounds/whiff.mp3"] = "sounds/whiff.mp3";
-	}
-	var _this55 = this.type;
-	var value27 = "MUSIC";
-	if(__map_reserved["sounds/whiff.mp3"] != null) {
-		_this55.setReserved("sounds/whiff.mp3",value27);
-	} else {
-		_this55.h["sounds/whiff.mp3"] = value27;
-	}
-	var _this56 = this.path;
-	if(__map_reserved["sounds/whiff.ogg"] != null) {
-		_this56.setReserved("sounds/whiff.ogg","sounds/whiff.ogg");
-	} else {
-		_this56.h["sounds/whiff.ogg"] = "sounds/whiff.ogg";
-	}
-	var _this57 = this.type;
-	var value28 = "SOUND";
-	if(__map_reserved["sounds/whiff.ogg"] != null) {
-		_this57.setReserved("sounds/whiff.ogg",value28);
-	} else {
-		_this57.h["sounds/whiff.ogg"] = value28;
-	}
-	var _this58 = this.path;
-	if(__map_reserved["sounds/whiff.wav"] != null) {
-		_this58.setReserved("sounds/whiff.wav","sounds/whiff.wav");
-	} else {
-		_this58.h["sounds/whiff.wav"] = "sounds/whiff.wav";
-	}
-	var _this59 = this.type;
-	var value29 = "SOUND";
-	if(__map_reserved["sounds/whiff.wav"] != null) {
-		_this59.setReserved("sounds/whiff.wav",value29);
-	} else {
-		_this59.h["sounds/whiff.wav"] = value29;
+		_this29.h["sounds/whiff.mp3"] = value14;
 	}
 	var assetsPrefix = null;
 	if(ApplicationMain.config != null && Object.prototype.hasOwnProperty.call(ApplicationMain.config,"assetsPrefix")) {
@@ -2446,13 +2213,13 @@ var DefaultAssetLibrary = function() {
 		var tmp = this.path.keys();
 		while(tmp.hasNext()) {
 			var k = tmp.next();
-			var _this60 = this.path;
-			var value30 = assetsPrefix + (__map_reserved[k] != null?_this60.getReserved(k):_this60.h[k]);
-			var _this61 = this.path;
+			var _this30 = this.path;
+			var value15 = assetsPrefix + (__map_reserved[k] != null?_this30.getReserved(k):_this30.h[k]);
+			var _this31 = this.path;
 			if(__map_reserved[k] != null) {
-				_this61.setReserved(k,value30);
+				_this31.setReserved(k,value15);
 			} else {
-				_this61.h[k] = value30;
+				_this31.h[k] = value15;
 			}
 		}
 	}
@@ -3187,6 +2954,270 @@ _$UInt_UInt_$Impl_$.toFloat = function(this1) {
 	} else {
 		return this1 + 0.0;
 	}
+};
+var devilsownluck_DevilsOwnLuckGame = function() {
+	openfl_display_Sprite.call(this);
+	devilsownluck_DevilsOwnLuckGame.game = this;
+	devilsownluck_SoundManager.initialize();
+	devilsownluck_Money.initialize();
+	this.newGame();
+	devilsownluck_SoundManager.play("theme",true);
+};
+$hxClasses["devilsownluck.DevilsOwnLuckGame"] = devilsownluck_DevilsOwnLuckGame;
+devilsownluck_DevilsOwnLuckGame.__name__ = ["devilsownluck","DevilsOwnLuckGame"];
+devilsownluck_DevilsOwnLuckGame.__super__ = openfl_display_Sprite;
+devilsownluck_DevilsOwnLuckGame.prototype = $extend(openfl_display_Sprite.prototype,{
+	luckyWheel: null
+	,newGame: function() {
+		this.luckyWheel = new devilsownluck_Wheel();
+		this.addChild(this.luckyWheel.container);
+		this.removeEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
+		this.addEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
+	}
+	,this_onEnterFrame: function(event) {
+		this.luckyWheel.update();
+	}
+	,__class__: devilsownluck_DevilsOwnLuckGame
+});
+var devilsownluck_Money = function() { };
+$hxClasses["devilsownluck.Money"] = devilsownluck_Money;
+devilsownluck_Money.__name__ = ["devilsownluck","Money"];
+devilsownluck_Money.initialize = function() {
+	devilsownluck_Money.Score = new openfl_text_TextField();
+	devilsownluck_Money.currentScore = 0;
+	devilsownluck_Money.Score.set_x(300);
+	devilsownluck_Money.Score.set_width(200);
+	devilsownluck_Money.Score.set_y(0);
+	devilsownluck_Money.Score.set_selectable(false);
+	var defaultFormat = new openfl_text_TextFormat(null,60,0);
+	defaultFormat.align = 4;
+	devilsownluck_Money.Score.set_defaultTextFormat(defaultFormat);
+	devilsownluck_Money.Score.set_embedFonts(true);
+	devilsownluck_DevilsOwnLuckGame.game.addChild(devilsownluck_Money.Score);
+	devilsownluck_Money.currentScore = 0;
+	devilsownluck_Money.Score.set_text("0");
+};
+devilsownluck_Money.add = function(_money) {
+	devilsownluck_Money.currentScore += _money;
+	devilsownluck_Money.Score.set_text(Std.string(devilsownluck_Money.currentScore));
+};
+var devilsownluck_SoundManager = function() { };
+$hxClasses["devilsownluck.SoundManager"] = devilsownluck_SoundManager;
+devilsownluck_SoundManager.__name__ = ["devilsownluck","SoundManager"];
+devilsownluck_SoundManager.initialize = function() {
+	var v = openfl_Assets.getSound("soundTheme");
+	var _this = devilsownluck_SoundManager.sounds;
+	if(__map_reserved.theme != null) {
+		_this.setReserved("theme",v);
+	} else {
+		_this.h["theme"] = v;
+	}
+	var v1 = openfl_Assets.getSound("sound3");
+	var _this1 = devilsownluck_SoundManager.sounds;
+	if(__map_reserved["1"] != null) {
+		_this1.setReserved("1",v1);
+	} else {
+		_this1.h["1"] = v1;
+	}
+	var v2 = openfl_Assets.getSound("sound4");
+	var _this2 = devilsownluck_SoundManager.sounds;
+	if(__map_reserved["2"] != null) {
+		_this2.setReserved("2",v2);
+	} else {
+		_this2.h["2"] = v2;
+	}
+	var v3 = openfl_Assets.getSound("sound5");
+	var _this3 = devilsownluck_SoundManager.sounds;
+	if(__map_reserved["3"] != null) {
+		_this3.setReserved("3",v3);
+	} else {
+		_this3.h["3"] = v3;
+	}
+};
+devilsownluck_SoundManager.play = function(_name,_repeat) {
+	if(_repeat == null) {
+		_repeat = false;
+	}
+	var _this = devilsownluck_SoundManager.sounds;
+	(__map_reserved[_name] != null?_this.getReserved(_name):_this.h[_name]).play(0.0,_repeat?2147483647:0);
+};
+var devilsownluck_Wheel = function() {
+	this.slotData = [];
+	this.speed = 0;
+	this.size = 500;
+	this.y = 0;
+	this.x = 0;
+	this.rotation = 0;
+	this.spinning = false;
+	this.container = new openfl_display_Sprite();
+	this.container.buttonMode = true;
+	this.container.addEventListener("mouseDown",$bind(this,this.spin));
+	this.wheelSprite = new openfl_display_Sprite();
+	this.markerBitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/marker.png"));
+	this.container.addChild(this.wheelSprite);
+	this.container.addChild(this.markerBitmap);
+	this.markerBitmap.set_width(50);
+	this.markerBitmap.set_height(50);
+	this.x = 0.0;
+	this.y = 50.0;
+	this.container.set_x(this.x);
+	this.container.set_y(this.y);
+	this.markerBitmap.set_x(this.size / 2 - this.markerBitmap.get_width() / 2);
+	this.markerBitmap.set_y(this.size - this.markerBitmap.get_height() / 2);
+	this.generateWheel();
+};
+$hxClasses["devilsownluck.Wheel"] = devilsownluck_Wheel;
+devilsownluck_Wheel.__name__ = ["devilsownluck","Wheel"];
+devilsownluck_Wheel.prototype = {
+	container: null
+	,wheelSprite: null
+	,markerBitmap: null
+	,spinning: null
+	,rotation: null
+	,x: null
+	,y: null
+	,size: null
+	,speed: null
+	,slotData: null
+	,generateWheel: function() {
+		var sourceData = [{ label : "", image : openfl_Assets.getBitmapData("images/bag.png"), color : 4495684, size : 0.04, callback : function() {
+			devilsownluck_Money.add(777);
+			devilsownluck_SoundManager.play("1");
+		}},{ label : "", image : openfl_Assets.getBitmapData("images/card.png"), color : 11184640, size : 0.03, callback : function() {
+			devilsownluck_Money.add(5000);
+			devilsownluck_SoundManager.play("2");
+		}},{ label : "", image : openfl_Assets.getBitmapData("images/reaper.png"), color : 1118566, size : 0.07, callback : function() {
+			devilsownluck_Money.add(-5000);
+			devilsownluck_SoundManager.play("3");
+		}},{ label : "", image : openfl_Assets.getBitmapData("images/card.png"), color : 11184640, size : 0.03, callback : function() {
+			devilsownluck_Money.add(5000);
+			devilsownluck_SoundManager.play("2");
+		}}];
+		var leftover = 1.0 - Lambda.fold(sourceData,function(a,b) {
+			return a.size + b;
+		},0.0);
+		var normalSize = 0.04;
+		var normalNeeded = Math.floor(leftover / 0.04);
+		normalSize = 0.04 + (leftover - 0.04 * normalNeeded) / normalNeeded;
+		var specialSpacing = Math.floor(normalNeeded / sourceData.length);
+		var specialIndex = 0;
+		var toggle = true;
+		var i = 0;
+		while(i < normalNeeded) {
+			if(i % specialSpacing == 0 && specialIndex < sourceData.length) {
+				this.slotData.push(sourceData[specialIndex]);
+				++specialIndex;
+			}
+			this.slotData.push({ label : i <= 9?"0" + i:"" + i, image : null, color : toggle?0:16711680, size : normalSize, callback : function() {
+				devilsownluck_Money.add(10);
+			}});
+			++i;
+			toggle = !toggle;
+		}
+		var slots = this.slotData.length;
+		var length = this.size / 2;
+		var angle = 0.0;
+		var index = 0;
+		while(index < slots) {
+			this.wheelSprite.get_graphics().beginFill(this.slotData[index].color,1);
+			var stepsize = Math.PI * 2 * this.slotData[index].size;
+			var xPoint = 0 * Math.cos(angle);
+			var yPoint = 0 * Math.sin(angle);
+			this.wheelSprite.get_graphics().moveTo(xPoint + this.size / 2,yPoint + this.size / 2);
+			this.wheelSprite.get_graphics().lineTo(xPoint + this.size / 2,yPoint + this.size / 2);
+			var xPoint1 = length * Math.cos(angle);
+			var yPoint1 = length * Math.sin(angle);
+			this.wheelSprite.get_graphics().lineTo(xPoint1 + this.size / 2,yPoint1 + this.size / 2);
+			var step = 0.0;
+			while(step < stepsize) {
+				var xPoint2 = length * Math.cos(angle + step);
+				var yPoint2 = length * Math.sin(angle + step);
+				this.wheelSprite.get_graphics().lineTo(xPoint2 + this.size / 2,yPoint2 + this.size / 2);
+				step += 0.01;
+			}
+			var xPoint3 = length * Math.cos(angle + stepsize);
+			var yPoint3 = length * Math.sin(angle + stepsize);
+			this.wheelSprite.get_graphics().lineTo(xPoint3 + this.size / 2,yPoint3 + this.size / 2);
+			this.wheelSprite.get_graphics().endFill();
+			if(this.slotData[index].label != "") {
+				var textField = new openfl_text_TextField();
+				var defaultFormat = new openfl_text_TextFormat(null,36,16777215);
+				textField.set_width(40);
+				textField.set_height(40);
+				textField.set_defaultTextFormat(defaultFormat);
+				textField.set_embedFonts(true);
+				textField.set_selectable(false);
+				textField.set_text(this.slotData[index].label);
+				var fontlength = length - 40 - 10;
+				var xPoint4 = fontlength * Math.cos(angle + stepsize / 2);
+				var yPoint4 = fontlength * Math.sin(angle + stepsize / 2);
+				var matrix = new openfl_geom_Matrix();
+				matrix.translate(-20.,0);
+				matrix.rotate(angle + stepsize / 2 - Math.PI / 2);
+				matrix.translate(xPoint4 + this.size / 2,yPoint4 + this.size / 2);
+				textField.get_transform().set_matrix(matrix);
+				this.wheelSprite.addChild(textField);
+			}
+			if(this.slotData[index].image != null) {
+				var image = new openfl_display_Bitmap(this.slotData[index].image);
+				image.set_width(50);
+				image.set_height(50);
+				image.smoothing = true;
+				var fontlength1 = length - 40;
+				var xPoint5 = fontlength1 * Math.cos(angle + stepsize / 2);
+				var yPoint5 = fontlength1 * Math.sin(angle + stepsize / 2);
+				image.set_x(xPoint5 + this.size / 2 - image.get_width() / 2);
+				image.set_y(yPoint5 + this.size / 2 - image.get_height() / 2);
+				this.wheelSprite.addChild(image);
+			}
+			angle += stepsize;
+			++index;
+		}
+		this.wheelSprite.get_graphics().beginFill(16777215,1);
+		var angle1 = 0.0;
+		while(angle1 < Math.PI * 2) {
+			var xPoint6 = 70 * Math.cos(angle1);
+			var yPoint6 = 70 * Math.sin(angle1);
+			this.wheelSprite.get_graphics().lineTo(xPoint6 + this.size / 2,yPoint6 + this.size / 2);
+			angle1 += 0.9;
+		}
+		this.wheelSprite.get_graphics().endFill();
+	}
+	,cash: function() {
+		var seek = (this.rotation + Math.PI * 2.5) % (Math.PI * 2);
+		var rotationDistance = 0;
+		var index = 0;
+		while(true) {
+			rotationDistance += Math.PI * 2 * this.slotData[index].size;
+			if(rotationDistance < seek) {
+				index = (index + 1) % this.slotData.length;
+			} else {
+				break;
+			}
+		}
+		this.slotData[index].callback();
+	}
+	,spin: function(_) {
+		this.spinning = true;
+		this.speed = 0.08 + Std.random(32) / 1000;
+	}
+	,update: function() {
+		if(this.spinning) {
+			this.rotation = (this.rotation + this.speed) % (Math.PI * 2);
+			var matrix = new openfl_geom_Matrix();
+			matrix.translate(-(this.size / 2),-(this.size / 2));
+			matrix.rotate(-this.rotation);
+			matrix.translate(this.size / 2,this.size / 2);
+			this.wheelSprite.get_transform().set_matrix(matrix);
+			this.speed -= 0.0005;
+			if(this.speed < 0) {
+				this.cash();
+				this.spinning = false;
+				this.speed = 0;
+			}
+		}
+	}
+	,__class__: devilsownluck_Wheel
 };
 var haxe_StackItem = $hxClasses["haxe.StackItem"] = { __ename__ : ["haxe","StackItem"], __constructs__ : ["CFunction","Module","FilePos","Method","LocalFunction"] };
 haxe_StackItem.CFunction = ["CFunction",0];
@@ -5101,7 +5132,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 771997;
+	this.version = 457998;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
@@ -45449,331 +45480,6 @@ haxe_lang_Iterable.prototype = {
 	iterator: null
 	,__class__: haxe_lang_Iterable
 };
-var piratepig_Money = function() { };
-$hxClasses["piratepig.Money"] = piratepig_Money;
-piratepig_Money.__name__ = ["piratepig","Money"];
-piratepig_Money.initialize = function() {
-	piratepig_Money.Score = new openfl_text_TextField();
-	piratepig_Money.currentScore = 0;
-	piratepig_Money.Score.set_x(200);
-	piratepig_Money.Score.set_width(200);
-	piratepig_Money.Score.set_y(12);
-	piratepig_Money.Score.set_selectable(false);
-	var defaultFormat = new openfl_text_TextFormat(null,60,0);
-	defaultFormat.align = 4;
-	piratepig_Money.Score.set_defaultTextFormat(defaultFormat);
-	piratepig_Money.Score.set_filters([new openfl_filters_BlurFilter(1.5,1.5),new openfl_filters_DropShadowFilter(1,45,0,0.2,5,5)]);
-	piratepig_Money.Score.set_embedFonts(true);
-	piratepig_PiratePigGame.game.addChild(piratepig_Money.Score);
-	piratepig_Money.currentScore = 0;
-	piratepig_Money.Score.set_text("0");
-};
-piratepig_Money.add = function(_money) {
-	piratepig_Money.currentScore += _money;
-	piratepig_Money.Score.set_text(Std.string(piratepig_Money.currentScore));
-};
-var piratepig_PiratePigGame = function() {
-	piratepig_PiratePigGame.game = this;
-	openfl_display_Sprite.call(this);
-	this.initialize();
-	this.construct();
-	this.newGame();
-};
-$hxClasses["piratepig.PiratePigGame"] = piratepig_PiratePigGame;
-piratepig_PiratePigGame.__name__ = ["piratepig","PiratePigGame"];
-piratepig_PiratePigGame.__super__ = openfl_display_Sprite;
-piratepig_PiratePigGame.prototype = $extend(openfl_display_Sprite.prototype,{
-	Background: null
-	,Cursor: null
-	,CursorHighlight: null
-	,IntroSound: null
-	,Sound3: null
-	,Sound4: null
-	,Sound5: null
-	,TileContainer: null
-	,currentScale: null
-	,cacheMouse: null
-	,cursorPosition: null
-	,needToCheckMatches: null
-	,selectedTile: null
-	,tiles: null
-	,usedTiles: null
-	,luckyWheel: null
-	,construct: function() {
-		var contentWidth = 75 * piratepig_PiratePigGame.NUM_COLUMNS;
-		this.Background.set_y(85);
-		this.Background.get_graphics().beginFill(16777215,0.4);
-		this.Background.get_graphics().drawRect(0,0,contentWidth,75 * piratepig_PiratePigGame.NUM_ROWS);
-		this.Background.set_filters([new openfl_filters_BlurFilter(10,10)]);
-		this.addChild(this.Background);
-		this.TileContainer.set_x(14);
-		this.TileContainer.set_y(this.Background.get_y() + 14);
-		this.TileContainer.addEventListener("mouseDown",$bind(this,this.TileContainer_onMouseDown));
-		openfl_Lib.current.stage.addEventListener("mouseUp",$bind(this,this.stage_onMouseUp));
-		this.addChild(this.TileContainer);
-		this.IntroSound = openfl_Assets.getSound("soundTheme");
-		this.Sound3 = openfl_Assets.getSound("sound3");
-		this.Sound4 = openfl_Assets.getSound("sound4");
-		this.Sound5 = openfl_Assets.getSound("sound5");
-		this.Cursor.set_x(this.TileContainer.get_x());
-		this.Cursor.set_y(this.TileContainer.get_y());
-		this.CursorHighlight.set_x(this.Cursor.get_x());
-		this.CursorHighlight.set_y(this.Cursor.get_y());
-		this.Cursor.set_visible(false);
-		this.CursorHighlight.set_visible(false);
-		this.addChild(this.Cursor);
-		this.addChild(this.CursorHighlight);
-	}
-	,initialize: function() {
-		piratepig_Money.initialize();
-		this.currentScale = 1;
-		this.usedTiles = [];
-		this.Background = new openfl_display_Sprite();
-		this.TileContainer = new openfl_display_Sprite();
-		this.Cursor = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/cursor.png"));
-		this.CursorHighlight = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/cursor_highlight.png"));
-	}
-	,newGame: function() {
-		this.luckyWheel = new piratepig_Wheel();
-		this.addChild(this.luckyWheel);
-		this.IntroSound.play();
-		this.removeEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
-		this.addEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
-	}
-	,resize: function(newWidth,newHeight) {
-		var maxWidth = newWidth * 0.90;
-		var maxHeight = newHeight * 0.86;
-		this.currentScale = 1;
-		this.set_scaleX(1);
-		this.set_scaleY(1);
-		var currentWidth = this.get_width();
-		var currentHeight = this.get_height();
-		if(currentWidth > maxWidth || currentHeight > maxHeight) {
-			var maxScaleX = maxWidth / currentWidth;
-			var maxScaleY = maxHeight / currentHeight;
-			if(maxScaleX < maxScaleY) {
-				this.currentScale = maxScaleX;
-			} else {
-				this.currentScale = maxScaleY;
-			}
-			this.set_scaleX(this.currentScale);
-			this.set_scaleY(this.currentScale);
-		}
-		this.set_x(newWidth / 2 - currentWidth * this.currentScale / 2);
-	}
-	,stage_onMouseUp: function(event) {
-		if(this.cacheMouse != null && this.selectedTile != null && !this.selectedTile.moving) {
-			var differenceX = event.stageX - this.cacheMouse.x;
-			var differenceY = event.stageY - this.cacheMouse.y;
-			if(Math.abs(differenceX) > 10 || Math.abs(differenceY) > 10) {
-				var tmp = Math.abs(differenceX) > Math.abs(differenceY);
-			}
-		}
-		this.selectedTile = null;
-		this.cacheMouse = null;
-	}
-	,this_onEnterFrame: function(event) {
-		this.luckyWheel.update();
-	}
-	,TileContainer_onMouseDown: function(event) {
-		if(js_Boot.__instanceof(event.target,piratepig_Tile)) {
-			this.selectedTile = event.target;
-			this.cacheMouse = new openfl_geom_Point(event.stageX,event.stageY);
-		} else {
-			this.cacheMouse = null;
-			this.selectedTile = null;
-		}
-	}
-	,__class__: piratepig_PiratePigGame
-});
-var piratepig_Tile = function(imagePath) {
-	openfl_display_Sprite.call(this);
-	var image = new openfl_display_Bitmap(openfl_Assets.getBitmapData(imagePath));
-	image.smoothing = true;
-	this.addChild(image);
-	this.mouseChildren = false;
-	this.buttonMode = true;
-	this.get_graphics().beginFill(0,0);
-	this.get_graphics().drawRect(-5,-5,66,66);
-};
-$hxClasses["piratepig.Tile"] = piratepig_Tile;
-piratepig_Tile.__name__ = ["piratepig","Tile"];
-piratepig_Tile.__super__ = openfl_display_Sprite;
-piratepig_Tile.prototype = $extend(openfl_display_Sprite.prototype,{
-	column: null
-	,moving: null
-	,removed: null
-	,row: null
-	,type: null
-	,initialize: function() {
-		this.moving = false;
-		this.removed = false;
-		this.mouseEnabled = true;
-		this.buttonMode = true;
-		this.set_scaleX(1);
-		this.set_scaleY(1);
-		this.set_alpha(1);
-	}
-	,moveTo: function(duration,targetX,targetY) {
-		this.moving = true;
-		motion_Actuate.tween(this,duration,{ x : targetX, y : targetY}).ease(motion_easing_Quad.get_easeOut()).onComplete($bind(this,this.this_onMoveToComplete));
-	}
-	,remove: function(animate) {
-		if(animate == null) {
-			animate = true;
-		}
-		if(!this.removed) {
-			if(animate) {
-				this.mouseEnabled = false;
-				this.buttonMode = false;
-				this.parent.addChildAt(this,0);
-				motion_Actuate.tween(this,0.6,{ alpha : 0, scaleX : 2, scaleY : 2, x : this.get_x() - this.get_width() / 2, y : this.get_y() - this.get_height() / 2}).onComplete($bind(this,this.this_onRemoveComplete));
-			} else {
-				this.this_onRemoveComplete();
-			}
-		}
-		this.removed = true;
-	}
-	,this_onMoveToComplete: function() {
-		this.moving = false;
-	}
-	,this_onRemoveComplete: function() {
-		this.parent.removeChild(this);
-	}
-	,__class__: piratepig_Tile
-});
-var piratepig_Wheel = function() {
-	this.slotData = [];
-	this.speed = 0;
-	this.size = 500;
-	this.yPos = 0;
-	this.xPos = 0;
-	this.rot = 0;
-	openfl_display_Sprite.call(this);
-	this.xPos = 200.0;
-	this.yPos = 400.0;
-	this.speed = 0.1;
-	this.generateWheel();
-};
-$hxClasses["piratepig.Wheel"] = piratepig_Wheel;
-piratepig_Wheel.__name__ = ["piratepig","Wheel"];
-piratepig_Wheel.__super__ = openfl_display_Sprite;
-piratepig_Wheel.prototype = $extend(openfl_display_Sprite.prototype,{
-	rot: null
-	,xPos: null
-	,yPos: null
-	,size: null
-	,speed: null
-	,slotData: null
-	,generateWheel: function() {
-		var sourceData = [{ label : "", color : 4495684, size : 0.03, callback : function() {
-			piratepig_Money.add(777);
-		}},{ label : "", color : 16776960, size : 0.01, callback : function() {
-			piratepig_Money.add(5000);
-		}},{ label : "", color : 2237098, size : 0.07, callback : function() {
-			piratepig_Money.add(100);
-		}}];
-		var leftover = 1.0 - Lambda.fold(sourceData,function(a,b) {
-			return a.size + b;
-		},0.0);
-		var normalSize = 0.04;
-		var normalNeeded = Math.floor(leftover / 0.04);
-		normalSize = 0.04 + (leftover - 0.04 * normalNeeded) / normalNeeded;
-		var specialSpacing = Math.floor(normalNeeded / sourceData.length);
-		var specialIndex = 0;
-		var toggle = true;
-		var i = 0;
-		while(i < normalNeeded) {
-			if(i % specialSpacing == 0 && specialIndex < sourceData.length) {
-				this.slotData.push(sourceData[specialIndex]);
-				++specialIndex;
-			}
-			this.slotData.push({ label : i < 9?"0" + i:"" + i, color : toggle?0:16711680, size : normalSize, callback : function() {
-				piratepig_Money.add(10);
-			}});
-			++i;
-			toggle = !toggle;
-		}
-		var slots = this.slotData.length;
-		var length = this.size / 2;
-		var angle = 0.0;
-		var index = 0;
-		while(index < slots) {
-			this.get_graphics().beginFill(this.slotData[index].color,1);
-			var stepsize = Math.PI * 2 * this.slotData[index].size;
-			var xPoint = 0 * Math.cos(angle);
-			var yPoint = 0 * Math.sin(angle);
-			this.get_graphics().moveTo(xPoint + this.size / 2,yPoint + this.size / 2);
-			this.get_graphics().lineTo(xPoint + this.size / 2,yPoint + this.size / 2);
-			var xPoint1 = length * Math.cos(angle);
-			var yPoint1 = length * Math.sin(angle);
-			this.get_graphics().lineTo(xPoint1 + this.size / 2,yPoint1 + this.size / 2);
-			var step = 0.0;
-			while(step < stepsize) {
-				var xPoint2 = length * Math.cos(angle + step);
-				var yPoint2 = length * Math.sin(angle + step);
-				this.get_graphics().lineTo(xPoint2 + this.size / 2,yPoint2 + this.size / 2);
-				step += 0.01;
-			}
-			var xPoint3 = length * Math.cos(angle + stepsize);
-			var yPoint3 = length * Math.sin(angle + stepsize);
-			this.get_graphics().lineTo(xPoint3 + this.size / 2,yPoint3 + this.size / 2);
-			this.get_graphics().endFill();
-			if(this.slotData[index].label != "") {
-				var textField = new openfl_text_TextField();
-				var defaultFormat = new openfl_text_TextFormat(null,36,16777215);
-				defaultFormat.align = 3;
-				textField.set_defaultTextFormat(defaultFormat);
-				textField.set_embedFonts(true);
-				textField.set_text(this.slotData[index].label);
-				var textWidth = Math.ceil(textField.get_textWidth());
-				var textHeight = Math.ceil(textField.get_textHeight());
-				var textFieldBitmapData = new openfl_display_BitmapData(textWidth,textHeight,true,0);
-				var matrix = new openfl_geom_Matrix();
-				matrix.translate(-textWidth / 2,-textHeight / 2);
-				matrix.rotate(angle + stepsize / 2 + Math.PI / 2);
-				matrix.translate(textWidth / 2,textHeight / 2);
-				textFieldBitmapData.draw(textField,matrix);
-				var textFieldBitmap = new openfl_display_Bitmap(textFieldBitmapData);
-				textFieldBitmap.smoothing = true;
-				var fontlength = length - 20;
-				var xPoint4 = fontlength * Math.cos(angle + stepsize / 2);
-				var yPoint4 = fontlength * Math.sin(angle + stepsize / 2);
-				textFieldBitmap.set_x(xPoint4 + this.size / 2 - textWidth / 2);
-				textFieldBitmap.set_y(yPoint4 + this.size / 2 - textHeight / 2);
-				this.addChild(textFieldBitmap);
-			}
-			angle += stepsize;
-			++index;
-		}
-	}
-	,cash: function() {
-		var rotation = this.rot;
-		var index = 0;
-		while(rotation > 0) {
-			rotation -= this.slotData[index].size;
-			++index;
-			if(index >= this.slotData.length) {
-				index = 0;
-			}
-		}
-		this.slotData[index].callback();
-	}
-	,update: function() {
-		this.rot = this.rot + this.speed;
-		var matrix = new openfl_geom_Matrix();
-		matrix.translate(-(this.size / 2),-(this.size / 2));
-		matrix.rotate(this.rot);
-		matrix.translate(this.xPos,this.yPos);
-		this.get_transform().set_matrix(matrix);
-		this.speed -= 0.0005;
-		if(this.speed < 0) {
-			this.cash();
-			this.speed = Std.random(10) / 100 + 0.1;
-		}
-	}
-	,__class__: piratepig_Wheel
-});
 function $iterator(o) { if( o instanceof Array ) return function() { return HxOverrides.iter(o); }; return typeof(o.iterator) == 'function' ? $bind(o,o.iterator) : o.iterator; }
 var $_, $fid = 0;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $fid++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = function(){ return f.method.apply(f.scope, arguments); }; f.scope = o; f.method = m; o.hx__closures__[m.__id__] = f; } return f; }
@@ -45834,6 +45540,7 @@ openfl_display_DisplayObject.__broadcastEvents = new haxe_ds_StringMap();
 openfl_display_DisplayObject.__instanceCount = 0;
 openfl_display_DisplayObject.__worldRenderDirty = 0;
 openfl_display_DisplayObject.__worldTransformDirty = 0;
+devilsownluck_SoundManager.sounds = new haxe_ds_StringMap();
 haxe_Serializer.USE_CACHE = false;
 haxe_Serializer.USE_ENUM_INDEX = false;
 haxe_Serializer.BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%:";
@@ -47167,10 +46874,7 @@ openfl_utils__$CompressionAlgorithm_CompressionAlgorithm_$Impl_$.LZMA = 1;
 openfl_utils__$CompressionAlgorithm_CompressionAlgorithm_$Impl_$.ZLIB = 2;
 openfl_utils__$Endian_Endian_$Impl_$.BIG_ENDIAN = 0;
 openfl_utils__$Endian_Endian_$Impl_$.LITTLE_ENDIAN = 1;
-piratepig_PiratePigGame.NUM_COLUMNS = 8;
-piratepig_PiratePigGame.NUM_ROWS = 8;
-piratepig_PiratePigGame.tileImages = ["images/game_bear.png","images/game_bunny_02.png","images/game_carrot.png","images/game_lemon.png","images/game_panda.png","images/game_piratePig.png"];
 ApplicationMain.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
-//# sourceMappingURL=PiratePig.js.map
+//# sourceMappingURL=DevilsOwnLuck.js.map
