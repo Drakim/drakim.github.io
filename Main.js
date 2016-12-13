@@ -13,7 +13,7 @@ var ApplicationMain = function() { };
 $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "240", company : "Kim", file : "DevilsOwnLuck", fps : 60, name : "Devil's Own Luck", orientation : "", packageName : "com.example.myapp", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "Devil's Own Luck", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "1", company : "Kim", file : "Main", fps : 60, name : "Devil's Own Luck", orientation : "", packageName : "com.example.myapp", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "Devil's Own Luck", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.create = function() {
 	var app = new openfl_display_Application();
@@ -29,6 +29,10 @@ ApplicationMain.create = function() {
 	types.push("IMAGE");
 	urls.push("images/card.png");
 	types.push("IMAGE");
+	urls.push("images/empty.png");
+	types.push("IMAGE");
+	urls.push("images/gem.png");
+	types.push("IMAGE");
 	urls.push("images/inventory.png");
 	types.push("IMAGE");
 	urls.push("images/logo.png");
@@ -37,17 +41,17 @@ ApplicationMain.create = function() {
 	types.push("IMAGE");
 	urls.push("images/reaper.png");
 	types.push("IMAGE");
-	urls.push("sounds/3.mp3");
-	types.push("SOUND");
-	urls.push("sounds/4.mp3");
-	types.push("SOUND");
-	urls.push("sounds/5.mp3");
-	types.push("SOUND");
 	urls.push("sounds/cling1.mp3");
 	types.push("SOUND");
 	urls.push("sounds/cling2.mp3");
 	types.push("SOUND");
+	urls.push("sounds/coin.mp3");
+	types.push("SOUND");
+	urls.push("sounds/bling.mp3");
+	types.push("SOUND");
 	urls.push("sounds/reaper.mp3");
+	types.push("SOUND");
+	urls.push("sounds/roulette.mp3");
 	types.push("SOUND");
 	urls.push("sounds/theme.mp3");
 	types.push("MUSIC");
@@ -57,11 +61,17 @@ ApplicationMain.create = function() {
 	types.push("MUSIC");
 	urls.push("sounds/5.mp3");
 	types.push("MUSIC");
+	urls.push("sounds/bling.mp3");
+	types.push("MUSIC");
 	urls.push("sounds/cling1.mp3");
 	types.push("MUSIC");
 	urls.push("sounds/cling2.mp3");
 	types.push("MUSIC");
+	urls.push("sounds/coin.mp3");
+	types.push("MUSIC");
 	urls.push("sounds/reaper.mp3");
+	types.push("MUSIC");
+	urls.push("sounds/roulette.mp3");
 	types.push("MUSIC");
 	urls.push("sounds/theme.mp3");
 	types.push("MUSIC");
@@ -1903,33 +1913,28 @@ openfl_display_Sprite.prototype = $extend(openfl_display_DisplayObjectContainer.
 	,__class__: openfl_display_Sprite
 	,__properties__: $extend(openfl_display_DisplayObjectContainer.prototype.__properties__,{get_graphics:"get_graphics"})
 });
-var devilsownluck_DevilsOwnLuck = function() {
+var devilsownluck_Main = function() {
 	openfl_display_Sprite.call(this);
-	this.initialize();
-	this.construct();
+	this.game = new devilsownluck_Game();
+	this.addChild(this.game.container);
+	this.stage.showDefaultContextMenu = false;
 };
-$hxClasses["devilsownluck.DevilsOwnLuck"] = devilsownluck_DevilsOwnLuck;
-devilsownluck_DevilsOwnLuck.__name__ = ["devilsownluck","DevilsOwnLuck"];
-devilsownluck_DevilsOwnLuck.__super__ = openfl_display_Sprite;
-devilsownluck_DevilsOwnLuck.prototype = $extend(openfl_display_Sprite.prototype,{
-	Game: null
-	,construct: function() {
-		this.addChild(this.Game);
-	}
-	,initialize: function() {
-		this.Game = new devilsownluck_DevilsOwnLuckGame();
-	}
-	,__class__: devilsownluck_DevilsOwnLuck
+$hxClasses["devilsownluck.Main"] = devilsownluck_Main;
+devilsownluck_Main.__name__ = ["devilsownluck","Main"];
+devilsownluck_Main.__super__ = openfl_display_Sprite;
+devilsownluck_Main.prototype = $extend(openfl_display_Sprite.prototype,{
+	game: null
+	,__class__: devilsownluck_Main
 });
 var DocumentClass = function() {
 	openfl_Lib.current.addChild(this);
-	devilsownluck_DevilsOwnLuck.call(this);
+	devilsownluck_Main.call(this);
 	this.dispatchEvent(new openfl_events_Event("addedToStage",false,false));
 };
 $hxClasses["DocumentClass"] = DocumentClass;
 DocumentClass.__name__ = ["DocumentClass"];
-DocumentClass.__super__ = devilsownluck_DevilsOwnLuck;
-DocumentClass.prototype = $extend(devilsownluck_DevilsOwnLuck.prototype,{
+DocumentClass.__super__ = devilsownluck_Main;
+DocumentClass.prototype = $extend(devilsownluck_Main.prototype,{
 	__class__: DocumentClass
 });
 var lime_AssetLibrary = function() {
@@ -2049,251 +2054,316 @@ var DefaultAssetLibrary = function() {
 		_this3.h["images/card.png"] = value1;
 	}
 	var _this4 = this.path;
-	if(__map_reserved["images/inventory.png"] != null) {
-		_this4.setReserved("images/inventory.png","images/inventory.png");
+	if(__map_reserved["images/empty.png"] != null) {
+		_this4.setReserved("images/empty.png","images/empty.png");
 	} else {
-		_this4.h["images/inventory.png"] = "images/inventory.png";
+		_this4.h["images/empty.png"] = "images/empty.png";
 	}
 	var _this5 = this.type;
 	var value2 = "IMAGE";
-	if(__map_reserved["images/inventory.png"] != null) {
-		_this5.setReserved("images/inventory.png",value2);
+	if(__map_reserved["images/empty.png"] != null) {
+		_this5.setReserved("images/empty.png",value2);
 	} else {
-		_this5.h["images/inventory.png"] = value2;
+		_this5.h["images/empty.png"] = value2;
 	}
 	var _this6 = this.path;
-	if(__map_reserved["images/logo.png"] != null) {
-		_this6.setReserved("images/logo.png","images/logo.png");
+	if(__map_reserved["images/gem.png"] != null) {
+		_this6.setReserved("images/gem.png","images/gem.png");
 	} else {
-		_this6.h["images/logo.png"] = "images/logo.png";
+		_this6.h["images/gem.png"] = "images/gem.png";
 	}
 	var _this7 = this.type;
 	var value3 = "IMAGE";
-	if(__map_reserved["images/logo.png"] != null) {
-		_this7.setReserved("images/logo.png",value3);
+	if(__map_reserved["images/gem.png"] != null) {
+		_this7.setReserved("images/gem.png",value3);
 	} else {
-		_this7.h["images/logo.png"] = value3;
+		_this7.h["images/gem.png"] = value3;
 	}
 	var _this8 = this.path;
-	if(__map_reserved["images/marker.png"] != null) {
-		_this8.setReserved("images/marker.png","images/marker.png");
+	if(__map_reserved["images/inventory.png"] != null) {
+		_this8.setReserved("images/inventory.png","images/inventory.png");
 	} else {
-		_this8.h["images/marker.png"] = "images/marker.png";
+		_this8.h["images/inventory.png"] = "images/inventory.png";
 	}
 	var _this9 = this.type;
 	var value4 = "IMAGE";
-	if(__map_reserved["images/marker.png"] != null) {
-		_this9.setReserved("images/marker.png",value4);
+	if(__map_reserved["images/inventory.png"] != null) {
+		_this9.setReserved("images/inventory.png",value4);
 	} else {
-		_this9.h["images/marker.png"] = value4;
+		_this9.h["images/inventory.png"] = value4;
 	}
 	var _this10 = this.path;
-	if(__map_reserved["images/reaper.png"] != null) {
-		_this10.setReserved("images/reaper.png","images/reaper.png");
+	if(__map_reserved["images/logo.png"] != null) {
+		_this10.setReserved("images/logo.png","images/logo.png");
 	} else {
-		_this10.h["images/reaper.png"] = "images/reaper.png";
+		_this10.h["images/logo.png"] = "images/logo.png";
 	}
 	var _this11 = this.type;
 	var value5 = "IMAGE";
-	if(__map_reserved["images/reaper.png"] != null) {
-		_this11.setReserved("images/reaper.png",value5);
+	if(__map_reserved["images/logo.png"] != null) {
+		_this11.setReserved("images/logo.png",value5);
 	} else {
-		_this11.h["images/reaper.png"] = value5;
+		_this11.h["images/logo.png"] = value5;
 	}
 	var _this12 = this.path;
-	if(__map_reserved.sound3 != null) {
-		_this12.setReserved("sound3","sounds/3.mp3");
+	if(__map_reserved["images/marker.png"] != null) {
+		_this12.setReserved("images/marker.png","images/marker.png");
 	} else {
-		_this12.h["sound3"] = "sounds/3.mp3";
+		_this12.h["images/marker.png"] = "images/marker.png";
 	}
 	var _this13 = this.type;
-	var value6 = "SOUND";
-	if(__map_reserved.sound3 != null) {
-		_this13.setReserved("sound3",value6);
+	var value6 = "IMAGE";
+	if(__map_reserved["images/marker.png"] != null) {
+		_this13.setReserved("images/marker.png",value6);
 	} else {
-		_this13.h["sound3"] = value6;
+		_this13.h["images/marker.png"] = value6;
 	}
 	var _this14 = this.path;
-	if(__map_reserved.sound4 != null) {
-		_this14.setReserved("sound4","sounds/4.mp3");
+	if(__map_reserved["images/reaper.png"] != null) {
+		_this14.setReserved("images/reaper.png","images/reaper.png");
 	} else {
-		_this14.h["sound4"] = "sounds/4.mp3";
+		_this14.h["images/reaper.png"] = "images/reaper.png";
 	}
 	var _this15 = this.type;
-	var value7 = "SOUND";
-	if(__map_reserved.sound4 != null) {
-		_this15.setReserved("sound4",value7);
+	var value7 = "IMAGE";
+	if(__map_reserved["images/reaper.png"] != null) {
+		_this15.setReserved("images/reaper.png",value7);
 	} else {
-		_this15.h["sound4"] = value7;
+		_this15.h["images/reaper.png"] = value7;
 	}
 	var _this16 = this.path;
-	if(__map_reserved.sound5 != null) {
-		_this16.setReserved("sound5","sounds/5.mp3");
+	if(__map_reserved.cling1 != null) {
+		_this16.setReserved("cling1","sounds/cling1.mp3");
 	} else {
-		_this16.h["sound5"] = "sounds/5.mp3";
+		_this16.h["cling1"] = "sounds/cling1.mp3";
 	}
 	var _this17 = this.type;
 	var value8 = "SOUND";
-	if(__map_reserved.sound5 != null) {
-		_this17.setReserved("sound5",value8);
+	if(__map_reserved.cling1 != null) {
+		_this17.setReserved("cling1",value8);
 	} else {
-		_this17.h["sound5"] = value8;
+		_this17.h["cling1"] = value8;
 	}
 	var _this18 = this.path;
-	if(__map_reserved.cling1 != null) {
-		_this18.setReserved("cling1","sounds/cling1.mp3");
+	if(__map_reserved.cling2 != null) {
+		_this18.setReserved("cling2","sounds/cling2.mp3");
 	} else {
-		_this18.h["cling1"] = "sounds/cling1.mp3";
+		_this18.h["cling2"] = "sounds/cling2.mp3";
 	}
 	var _this19 = this.type;
 	var value9 = "SOUND";
-	if(__map_reserved.cling1 != null) {
-		_this19.setReserved("cling1",value9);
+	if(__map_reserved.cling2 != null) {
+		_this19.setReserved("cling2",value9);
 	} else {
-		_this19.h["cling1"] = value9;
+		_this19.h["cling2"] = value9;
 	}
 	var _this20 = this.path;
-	if(__map_reserved.cling2 != null) {
-		_this20.setReserved("cling2","sounds/cling2.mp3");
+	if(__map_reserved.coin != null) {
+		_this20.setReserved("coin","sounds/coin.mp3");
 	} else {
-		_this20.h["cling2"] = "sounds/cling2.mp3";
+		_this20.h["coin"] = "sounds/coin.mp3";
 	}
 	var _this21 = this.type;
 	var value10 = "SOUND";
-	if(__map_reserved.cling2 != null) {
-		_this21.setReserved("cling2",value10);
+	if(__map_reserved.coin != null) {
+		_this21.setReserved("coin",value10);
 	} else {
-		_this21.h["cling2"] = value10;
+		_this21.h["coin"] = value10;
 	}
 	var _this22 = this.path;
-	if(__map_reserved.reaper != null) {
-		_this22.setReserved("reaper","sounds/reaper.mp3");
+	if(__map_reserved.bling != null) {
+		_this22.setReserved("bling","sounds/bling.mp3");
 	} else {
-		_this22.h["reaper"] = "sounds/reaper.mp3";
+		_this22.h["bling"] = "sounds/bling.mp3";
 	}
 	var _this23 = this.type;
 	var value11 = "SOUND";
-	if(__map_reserved.reaper != null) {
-		_this23.setReserved("reaper",value11);
+	if(__map_reserved.bling != null) {
+		_this23.setReserved("bling",value11);
 	} else {
-		_this23.h["reaper"] = value11;
+		_this23.h["bling"] = value11;
 	}
 	var _this24 = this.path;
-	if(__map_reserved.soundTheme != null) {
-		_this24.setReserved("soundTheme","sounds/theme.mp3");
+	if(__map_reserved.reaper != null) {
+		_this24.setReserved("reaper","sounds/reaper.mp3");
 	} else {
-		_this24.h["soundTheme"] = "sounds/theme.mp3";
+		_this24.h["reaper"] = "sounds/reaper.mp3";
 	}
 	var _this25 = this.type;
-	var value12 = "MUSIC";
-	if(__map_reserved.soundTheme != null) {
-		_this25.setReserved("soundTheme",value12);
+	var value12 = "SOUND";
+	if(__map_reserved.reaper != null) {
+		_this25.setReserved("reaper",value12);
 	} else {
-		_this25.h["soundTheme"] = value12;
+		_this25.h["reaper"] = value12;
 	}
 	var _this26 = this.path;
-	if(__map_reserved["sounds/3.mp3"] != null) {
-		_this26.setReserved("sounds/3.mp3","sounds/3.mp3");
+	if(__map_reserved.roulette != null) {
+		_this26.setReserved("roulette","sounds/roulette.mp3");
 	} else {
-		_this26.h["sounds/3.mp3"] = "sounds/3.mp3";
+		_this26.h["roulette"] = "sounds/roulette.mp3";
 	}
 	var _this27 = this.type;
-	var value13 = "MUSIC";
-	if(__map_reserved["sounds/3.mp3"] != null) {
-		_this27.setReserved("sounds/3.mp3",value13);
+	var value13 = "SOUND";
+	if(__map_reserved.roulette != null) {
+		_this27.setReserved("roulette",value13);
 	} else {
-		_this27.h["sounds/3.mp3"] = value13;
+		_this27.h["roulette"] = value13;
 	}
 	var _this28 = this.path;
-	if(__map_reserved["sounds/4.mp3"] != null) {
-		_this28.setReserved("sounds/4.mp3","sounds/4.mp3");
+	if(__map_reserved.soundTheme != null) {
+		_this28.setReserved("soundTheme","sounds/theme.mp3");
 	} else {
-		_this28.h["sounds/4.mp3"] = "sounds/4.mp3";
+		_this28.h["soundTheme"] = "sounds/theme.mp3";
 	}
 	var _this29 = this.type;
 	var value14 = "MUSIC";
-	if(__map_reserved["sounds/4.mp3"] != null) {
-		_this29.setReserved("sounds/4.mp3",value14);
+	if(__map_reserved.soundTheme != null) {
+		_this29.setReserved("soundTheme",value14);
 	} else {
-		_this29.h["sounds/4.mp3"] = value14;
+		_this29.h["soundTheme"] = value14;
 	}
 	var _this30 = this.path;
-	if(__map_reserved["sounds/5.mp3"] != null) {
-		_this30.setReserved("sounds/5.mp3","sounds/5.mp3");
+	if(__map_reserved["sounds/3.mp3"] != null) {
+		_this30.setReserved("sounds/3.mp3","sounds/3.mp3");
 	} else {
-		_this30.h["sounds/5.mp3"] = "sounds/5.mp3";
+		_this30.h["sounds/3.mp3"] = "sounds/3.mp3";
 	}
 	var _this31 = this.type;
 	var value15 = "MUSIC";
-	if(__map_reserved["sounds/5.mp3"] != null) {
-		_this31.setReserved("sounds/5.mp3",value15);
+	if(__map_reserved["sounds/3.mp3"] != null) {
+		_this31.setReserved("sounds/3.mp3",value15);
 	} else {
-		_this31.h["sounds/5.mp3"] = value15;
+		_this31.h["sounds/3.mp3"] = value15;
 	}
 	var _this32 = this.path;
-	if(__map_reserved["sounds/cling1.mp3"] != null) {
-		_this32.setReserved("sounds/cling1.mp3","sounds/cling1.mp3");
+	if(__map_reserved["sounds/4.mp3"] != null) {
+		_this32.setReserved("sounds/4.mp3","sounds/4.mp3");
 	} else {
-		_this32.h["sounds/cling1.mp3"] = "sounds/cling1.mp3";
+		_this32.h["sounds/4.mp3"] = "sounds/4.mp3";
 	}
 	var _this33 = this.type;
 	var value16 = "MUSIC";
-	if(__map_reserved["sounds/cling1.mp3"] != null) {
-		_this33.setReserved("sounds/cling1.mp3",value16);
+	if(__map_reserved["sounds/4.mp3"] != null) {
+		_this33.setReserved("sounds/4.mp3",value16);
 	} else {
-		_this33.h["sounds/cling1.mp3"] = value16;
+		_this33.h["sounds/4.mp3"] = value16;
 	}
 	var _this34 = this.path;
-	if(__map_reserved["sounds/cling2.mp3"] != null) {
-		_this34.setReserved("sounds/cling2.mp3","sounds/cling2.mp3");
+	if(__map_reserved["sounds/5.mp3"] != null) {
+		_this34.setReserved("sounds/5.mp3","sounds/5.mp3");
 	} else {
-		_this34.h["sounds/cling2.mp3"] = "sounds/cling2.mp3";
+		_this34.h["sounds/5.mp3"] = "sounds/5.mp3";
 	}
 	var _this35 = this.type;
 	var value17 = "MUSIC";
-	if(__map_reserved["sounds/cling2.mp3"] != null) {
-		_this35.setReserved("sounds/cling2.mp3",value17);
+	if(__map_reserved["sounds/5.mp3"] != null) {
+		_this35.setReserved("sounds/5.mp3",value17);
 	} else {
-		_this35.h["sounds/cling2.mp3"] = value17;
+		_this35.h["sounds/5.mp3"] = value17;
 	}
 	var _this36 = this.path;
-	if(__map_reserved["sounds/reaper.mp3"] != null) {
-		_this36.setReserved("sounds/reaper.mp3","sounds/reaper.mp3");
+	if(__map_reserved["sounds/bling.mp3"] != null) {
+		_this36.setReserved("sounds/bling.mp3","sounds/bling.mp3");
 	} else {
-		_this36.h["sounds/reaper.mp3"] = "sounds/reaper.mp3";
+		_this36.h["sounds/bling.mp3"] = "sounds/bling.mp3";
 	}
 	var _this37 = this.type;
 	var value18 = "MUSIC";
-	if(__map_reserved["sounds/reaper.mp3"] != null) {
-		_this37.setReserved("sounds/reaper.mp3",value18);
+	if(__map_reserved["sounds/bling.mp3"] != null) {
+		_this37.setReserved("sounds/bling.mp3",value18);
 	} else {
-		_this37.h["sounds/reaper.mp3"] = value18;
+		_this37.h["sounds/bling.mp3"] = value18;
 	}
 	var _this38 = this.path;
-	if(__map_reserved["sounds/theme.mp3"] != null) {
-		_this38.setReserved("sounds/theme.mp3","sounds/theme.mp3");
+	if(__map_reserved["sounds/cling1.mp3"] != null) {
+		_this38.setReserved("sounds/cling1.mp3","sounds/cling1.mp3");
 	} else {
-		_this38.h["sounds/theme.mp3"] = "sounds/theme.mp3";
+		_this38.h["sounds/cling1.mp3"] = "sounds/cling1.mp3";
 	}
 	var _this39 = this.type;
 	var value19 = "MUSIC";
-	if(__map_reserved["sounds/theme.mp3"] != null) {
-		_this39.setReserved("sounds/theme.mp3",value19);
+	if(__map_reserved["sounds/cling1.mp3"] != null) {
+		_this39.setReserved("sounds/cling1.mp3",value19);
 	} else {
-		_this39.h["sounds/theme.mp3"] = value19;
+		_this39.h["sounds/cling1.mp3"] = value19;
 	}
 	var _this40 = this.path;
-	if(__map_reserved["sounds/whiff.mp3"] != null) {
-		_this40.setReserved("sounds/whiff.mp3","sounds/whiff.mp3");
+	if(__map_reserved["sounds/cling2.mp3"] != null) {
+		_this40.setReserved("sounds/cling2.mp3","sounds/cling2.mp3");
 	} else {
-		_this40.h["sounds/whiff.mp3"] = "sounds/whiff.mp3";
+		_this40.h["sounds/cling2.mp3"] = "sounds/cling2.mp3";
 	}
 	var _this41 = this.type;
 	var value20 = "MUSIC";
-	if(__map_reserved["sounds/whiff.mp3"] != null) {
-		_this41.setReserved("sounds/whiff.mp3",value20);
+	if(__map_reserved["sounds/cling2.mp3"] != null) {
+		_this41.setReserved("sounds/cling2.mp3",value20);
 	} else {
-		_this41.h["sounds/whiff.mp3"] = value20;
+		_this41.h["sounds/cling2.mp3"] = value20;
+	}
+	var _this42 = this.path;
+	if(__map_reserved["sounds/coin.mp3"] != null) {
+		_this42.setReserved("sounds/coin.mp3","sounds/coin.mp3");
+	} else {
+		_this42.h["sounds/coin.mp3"] = "sounds/coin.mp3";
+	}
+	var _this43 = this.type;
+	var value21 = "MUSIC";
+	if(__map_reserved["sounds/coin.mp3"] != null) {
+		_this43.setReserved("sounds/coin.mp3",value21);
+	} else {
+		_this43.h["sounds/coin.mp3"] = value21;
+	}
+	var _this44 = this.path;
+	if(__map_reserved["sounds/reaper.mp3"] != null) {
+		_this44.setReserved("sounds/reaper.mp3","sounds/reaper.mp3");
+	} else {
+		_this44.h["sounds/reaper.mp3"] = "sounds/reaper.mp3";
+	}
+	var _this45 = this.type;
+	var value22 = "MUSIC";
+	if(__map_reserved["sounds/reaper.mp3"] != null) {
+		_this45.setReserved("sounds/reaper.mp3",value22);
+	} else {
+		_this45.h["sounds/reaper.mp3"] = value22;
+	}
+	var _this46 = this.path;
+	if(__map_reserved["sounds/roulette.mp3"] != null) {
+		_this46.setReserved("sounds/roulette.mp3","sounds/roulette.mp3");
+	} else {
+		_this46.h["sounds/roulette.mp3"] = "sounds/roulette.mp3";
+	}
+	var _this47 = this.type;
+	var value23 = "MUSIC";
+	if(__map_reserved["sounds/roulette.mp3"] != null) {
+		_this47.setReserved("sounds/roulette.mp3",value23);
+	} else {
+		_this47.h["sounds/roulette.mp3"] = value23;
+	}
+	var _this48 = this.path;
+	if(__map_reserved["sounds/theme.mp3"] != null) {
+		_this48.setReserved("sounds/theme.mp3","sounds/theme.mp3");
+	} else {
+		_this48.h["sounds/theme.mp3"] = "sounds/theme.mp3";
+	}
+	var _this49 = this.type;
+	var value24 = "MUSIC";
+	if(__map_reserved["sounds/theme.mp3"] != null) {
+		_this49.setReserved("sounds/theme.mp3",value24);
+	} else {
+		_this49.h["sounds/theme.mp3"] = value24;
+	}
+	var _this50 = this.path;
+	if(__map_reserved["sounds/whiff.mp3"] != null) {
+		_this50.setReserved("sounds/whiff.mp3","sounds/whiff.mp3");
+	} else {
+		_this50.h["sounds/whiff.mp3"] = "sounds/whiff.mp3";
+	}
+	var _this51 = this.type;
+	var value25 = "MUSIC";
+	if(__map_reserved["sounds/whiff.mp3"] != null) {
+		_this51.setReserved("sounds/whiff.mp3",value25);
+	} else {
+		_this51.h["sounds/whiff.mp3"] = value25;
 	}
 	var assetsPrefix = null;
 	if(ApplicationMain.config != null && Object.prototype.hasOwnProperty.call(ApplicationMain.config,"assetsPrefix")) {
@@ -2303,13 +2373,13 @@ var DefaultAssetLibrary = function() {
 		var tmp = this.path.keys();
 		while(tmp.hasNext()) {
 			var k = tmp.next();
-			var _this42 = this.path;
-			var value21 = assetsPrefix + (__map_reserved[k] != null?_this42.getReserved(k):_this42.h[k]);
-			var _this43 = this.path;
+			var _this52 = this.path;
+			var value26 = assetsPrefix + (__map_reserved[k] != null?_this52.getReserved(k):_this52.h[k]);
+			var _this53 = this.path;
 			if(__map_reserved[k] != null) {
-				_this43.setReserved(k,value21);
+				_this53.setReserved(k,value26);
 			} else {
-				_this43.h[k] = value21;
+				_this53.h[k] = value26;
 			}
 		}
 	}
@@ -3045,37 +3115,60 @@ _$UInt_UInt_$Impl_$.toFloat = function(this1) {
 		return this1 + 0.0;
 	}
 };
-var devilsownluck_DevilsOwnLuckGame = function() {
-	openfl_display_Sprite.call(this);
-	devilsownluck_DevilsOwnLuckGame.game = this;
+var devilsownluck_Game = function() {
+	devilsownluck_Game.instance = this;
+	this.container = new openfl_display_Sprite();
 	devilsownluck_SoundManager.initialize();
 	devilsownluck_Money.initialize();
+	devilsownluck_Multiplier.initialize();
 	devilsownluck_Inventory.initialize();
 	this.newGame();
+	devilsownluck_SoundManager.play("theme",true);
 };
-$hxClasses["devilsownluck.DevilsOwnLuckGame"] = devilsownluck_DevilsOwnLuckGame;
-devilsownluck_DevilsOwnLuckGame.__name__ = ["devilsownluck","DevilsOwnLuckGame"];
-devilsownluck_DevilsOwnLuckGame.__super__ = openfl_display_Sprite;
-devilsownluck_DevilsOwnLuckGame.prototype = $extend(openfl_display_Sprite.prototype,{
-	luckyWheel: null
+$hxClasses["devilsownluck.Game"] = devilsownluck_Game;
+devilsownluck_Game.__name__ = ["devilsownluck","Game"];
+devilsownluck_Game.prototype = {
+	container: null
+	,luckyWheel: null
 	,newGame: function() {
 		this.luckyWheel = new devilsownluck_Wheel();
-		this.addChild(this.luckyWheel.container);
-		this.removeEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
-		this.addEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
+		this.container.addEventListener("enterFrame",$bind(this,this.update));
 	}
-	,this_onEnterFrame: function(event) {
+	,update: function(event) {
 		this.luckyWheel.update();
 	}
-	,__class__: devilsownluck_DevilsOwnLuckGame
-});
-var devilsownluck_Inventory = function() {
+	,__class__: devilsownluck_Game
+};
+var devilsownluck_Item = function() {
+	this.quantity = 1;
 	this.container = new openfl_display_Sprite();
+	this.container.addChild(new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/gem.png")));
+	this.container.addEventListener("rightClick",$bind(this,this.consume));
+};
+$hxClasses["devilsownluck.Item"] = devilsownluck_Item;
+devilsownluck_Item.__name__ = ["devilsownluck","Item"];
+devilsownluck_Item.prototype = {
+	container: null
+	,quantity: null
+	,consume: function(_) {
+		devilsownluck_Money.add(99999999);
+	}
+	,__class__: devilsownluck_Item
+};
+var devilsownluck_Inventory = function() {
+	this.active = false;
+	this.itemColection = [];
+	this.itemColection.push(new devilsownluck_Item());
+	this.itemColection.push(new devilsownluck_Item());
+	this.itemColection.push(new devilsownluck_Item());
+	this.container = new openfl_display_Sprite();
+	this.container.buttonMode = true;
+	this.container.addEventListener("mouseDown",$bind(this,this.click));
 	var inventoryButton = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/inventory.png"));
-	inventoryButton.set_x(50);
-	inventoryButton.set_y(50);
+	this.container.set_x(800);
+	this.container.set_y(50);
 	this.container.addChild(inventoryButton);
-	devilsownluck_DevilsOwnLuckGame.game.addChild(this.container);
+	devilsownluck_Game.instance.container.addChild(this.container);
 };
 $hxClasses["devilsownluck.Inventory"] = devilsownluck_Inventory;
 devilsownluck_Inventory.__name__ = ["devilsownluck","Inventory"];
@@ -3083,7 +3176,56 @@ devilsownluck_Inventory.initialize = function() {
 	new devilsownluck_Inventory();
 };
 devilsownluck_Inventory.prototype = {
-	container: null
+	itemColection: null
+	,container: null
+	,contentContainer: null
+	,active: null
+	,click: function(_) {
+		if(!this.active) {
+			this.open();
+			this.active = true;
+		} else {
+			this.close();
+			this.active = false;
+		}
+	}
+	,open: function() {
+		this.contentContainer = new openfl_display_Sprite();
+		var _g1 = 0;
+		while(_g1 < 3) {
+			var i = _g1++;
+			var _g3 = 0;
+			while(_g3 < 3) {
+				var j = _g3++;
+				var stuff;
+				var item = this.itemColection[i * 3 + j];
+				if(item != null) {
+					stuff = item.container;
+					stuff.buttonMode = true;
+					stuff.set_width(64);
+					stuff.set_height(64);
+					stuff.set_x(65 * j);
+					stuff.set_y(65 * i);
+				} else {
+					stuff = new openfl_display_Sprite();
+					var icon = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/empty.png"));
+					icon.set_width(64);
+					icon.set_height(64);
+					stuff.addChild(icon);
+					stuff.set_x(65 * j);
+					stuff.set_y(65 * i);
+				}
+				this.contentContainer.addChild(stuff);
+			}
+		}
+		this.contentContainer.set_x(this.container.get_x() - 128);
+		this.contentContainer.set_y(this.container.get_y() + 64);
+		devilsownluck_Game.instance.container.addChild(this.contentContainer);
+	}
+	,close: function() {
+		devilsownluck_Game.instance.container.removeChild(this.contentContainer);
+		this.contentContainer = null;
+	}
 	,__class__: devilsownluck_Inventory
 };
 var devilsownluck_Money = function() { };
@@ -3100,13 +3242,41 @@ devilsownluck_Money.initialize = function() {
 	defaultFormat.align = 4;
 	devilsownluck_Money.Score.set_defaultTextFormat(defaultFormat);
 	devilsownluck_Money.Score.set_embedFonts(true);
-	devilsownluck_DevilsOwnLuckGame.game.addChild(devilsownluck_Money.Score);
+	devilsownluck_Game.instance.container.addChild(devilsownluck_Money.Score);
 	devilsownluck_Money.currentScore = 0;
 	devilsownluck_Money.Score.set_text("0");
 };
 devilsownluck_Money.add = function(_money) {
-	devilsownluck_Money.currentScore += _money;
+	devilsownluck_Money.currentScore += _money * devilsownluck_Multiplier.get();
 	devilsownluck_Money.Score.set_text(Std.string(devilsownluck_Money.currentScore));
+};
+var devilsownluck_Multiplier = function() { };
+$hxClasses["devilsownluck.Multiplier"] = devilsownluck_Multiplier;
+devilsownluck_Multiplier.__name__ = ["devilsownluck","Multiplier"];
+devilsownluck_Multiplier.initialize = function() {
+	devilsownluck_Multiplier.display = new openfl_text_TextField();
+	devilsownluck_Multiplier.display.set_x(10);
+	devilsownluck_Multiplier.display.set_width(200);
+	devilsownluck_Multiplier.display.set_y(0);
+	devilsownluck_Multiplier.display.set_selectable(false);
+	var defaultFormat = new openfl_text_TextFormat(null,60,0);
+	defaultFormat.align = 3;
+	devilsownluck_Multiplier.display.set_defaultTextFormat(defaultFormat);
+	devilsownluck_Multiplier.display.set_embedFonts(true);
+	devilsownluck_Game.instance.container.addChild(devilsownluck_Multiplier.display);
+	devilsownluck_Multiplier.currentMultiplier = 1;
+	devilsownluck_Multiplier.display.set_text("x" + devilsownluck_Multiplier.currentMultiplier);
+};
+devilsownluck_Multiplier.get = function() {
+	return devilsownluck_Multiplier.currentMultiplier;
+};
+devilsownluck_Multiplier.add = function(_amount) {
+	devilsownluck_Multiplier.currentMultiplier += _amount;
+	devilsownluck_Multiplier.display.set_text("x" + devilsownluck_Multiplier.currentMultiplier);
+};
+devilsownluck_Multiplier.set = function(_amount) {
+	devilsownluck_Multiplier.currentMultiplier = _amount;
+	devilsownluck_Multiplier.display.set_text("x" + devilsownluck_Multiplier.currentMultiplier);
 };
 var devilsownluck_SoundManager = function() { };
 $hxClasses["devilsownluck.SoundManager"] = devilsownluck_SoundManager;
@@ -3119,40 +3289,40 @@ devilsownluck_SoundManager.initialize = function() {
 	} else {
 		_this.h["theme"] = v;
 	}
-	var v1 = openfl_Assets.getSound("sound3");
+	var v1 = openfl_Assets.getSound("cling1");
 	var _this1 = devilsownluck_SoundManager.sounds;
-	if(__map_reserved["1"] != null) {
-		_this1.setReserved("1",v1);
-	} else {
-		_this1.h["1"] = v1;
-	}
-	var v2 = openfl_Assets.getSound("sound4");
-	var _this2 = devilsownluck_SoundManager.sounds;
-	if(__map_reserved["2"] != null) {
-		_this2.setReserved("2",v2);
-	} else {
-		_this2.h["2"] = v2;
-	}
-	var v3 = openfl_Assets.getSound("sound5");
-	var _this3 = devilsownluck_SoundManager.sounds;
-	if(__map_reserved["3"] != null) {
-		_this3.setReserved("3",v3);
-	} else {
-		_this3.h["3"] = v3;
-	}
-	var v4 = openfl_Assets.getSound("cling1");
-	var _this4 = devilsownluck_SoundManager.sounds;
 	if(__map_reserved.cling1 != null) {
-		_this4.setReserved("cling1",v4);
+		_this1.setReserved("cling1",v1);
 	} else {
-		_this4.h["cling1"] = v4;
+		_this1.h["cling1"] = v1;
 	}
-	var v5 = openfl_Assets.getSound("cling2");
-	var _this5 = devilsownluck_SoundManager.sounds;
+	var v2 = openfl_Assets.getSound("cling2");
+	var _this2 = devilsownluck_SoundManager.sounds;
 	if(__map_reserved.cling2 != null) {
-		_this5.setReserved("cling2",v5);
+		_this2.setReserved("cling2",v2);
 	} else {
-		_this5.h["cling2"] = v5;
+		_this2.h["cling2"] = v2;
+	}
+	var v3 = openfl_Assets.getSound("coin");
+	var _this3 = devilsownluck_SoundManager.sounds;
+	if(__map_reserved.coin != null) {
+		_this3.setReserved("coin",v3);
+	} else {
+		_this3.h["coin"] = v3;
+	}
+	var v4 = openfl_Assets.getSound("bling");
+	var _this4 = devilsownluck_SoundManager.sounds;
+	if(__map_reserved.bling != null) {
+		_this4.setReserved("bling",v4);
+	} else {
+		_this4.h["bling"] = v4;
+	}
+	var v5 = openfl_Assets.getSound("roulette");
+	var _this5 = devilsownluck_SoundManager.sounds;
+	if(__map_reserved.roulette != null) {
+		_this5.setReserved("roulette",v5);
+	} else {
+		_this5.h["roulette"] = v5;
 	}
 	var v6 = openfl_Assets.getSound("reaper");
 	var _this6 = devilsownluck_SoundManager.sounds;
@@ -3194,6 +3364,7 @@ var devilsownluck_Wheel = function() {
 	this.markerBitmap.set_y(this.size - this.markerBitmap.get_height() / 2);
 	this.generateSlots();
 	this.generateWheel();
+	devilsownluck_Game.instance.container.addChild(this.container);
 };
 $hxClasses["devilsownluck.Wheel"] = devilsownluck_Wheel;
 devilsownluck_Wheel.__name__ = ["devilsownluck","Wheel"];
@@ -3219,8 +3390,8 @@ devilsownluck_Wheel.prototype = {
 			image.set_y((_gthis.size / 2 - 40) * Math.sin(angle) + _gthis.size / 2 - image.get_height() / 2);
 			return image;
 		}, callback : function() {
-			devilsownluck_Money.add(777);
-			devilsownluck_SoundManager.play("1");
+			devilsownluck_Money.add(100);
+			devilsownluck_SoundManager.play("bling");
 		}},{ color : 11184640, size : 0.03, build : function(angle1) {
 			var image1 = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/card.png"));
 			image1.set_width(50);
@@ -3230,9 +3401,10 @@ devilsownluck_Wheel.prototype = {
 			image1.set_y((_gthis.size / 2 - 40) * Math.sin(angle1) + _gthis.size / 2 - image1.get_height() / 2);
 			return image1;
 		}, callback : function() {
-			devilsownluck_Money.add(5000);
-			devilsownluck_SoundManager.play("2");
+			devilsownluck_Money.add(150);
+			devilsownluck_SoundManager.play("bling");
 		}},{ color : 1118566, size : 0.07, build : function(angle2) {
+			new openfl_display_Sprite();
 			var image2 = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/reaper.png"));
 			image2.set_width(50);
 			image2.set_height(50);
@@ -3241,7 +3413,7 @@ devilsownluck_Wheel.prototype = {
 			image2.set_y((_gthis.size / 2 - 40) * Math.sin(angle2) + _gthis.size / 2 - image2.get_height() / 2);
 			return image2;
 		}, callback : function() {
-			devilsownluck_Money.add(-5000);
+			devilsownluck_Multiplier.set(1);
 			devilsownluck_SoundManager.play("reaper");
 		}},{ color : 11184640, size : 0.03, build : function(angle3) {
 			var image3 = new openfl_display_Bitmap(openfl_Assets.getBitmapData("images/card.png"));
@@ -3252,8 +3424,8 @@ devilsownluck_Wheel.prototype = {
 			image3.set_y((_gthis.size / 2 - 40) * Math.sin(angle3) + _gthis.size / 2 - image3.get_height() / 2);
 			return image3;
 		}, callback : function() {
-			devilsownluck_Money.add(5000);
-			devilsownluck_SoundManager.play("2");
+			devilsownluck_Money.add(150);
+			devilsownluck_SoundManager.play("bling");
 		}}];
 		var leftover = 1.0 - Lambda.fold(sourceData,function(a,b) {
 			return a.size + b;
@@ -3276,10 +3448,10 @@ devilsownluck_Wheel.prototype = {
 						var textField = new openfl_text_TextField();
 						textField.set_width(40);
 						textField.set_height(40);
-						textField.set_defaultTextFormat(new openfl_text_TextFormat(null,36,16777215));
+						textField.set_defaultTextFormat(new openfl_text_TextFormat(null,26,16777215));
 						textField.set_embedFonts(true);
 						textField.set_selectable(false);
-						textField.set_text(index <= 9?"0" + index:"" + index);
+						textField.set_text("$10");
 						var matrix = new openfl_geom_Matrix();
 						matrix.translate(-20,0);
 						matrix.rotate(angle4 - Math.PI / 2);
@@ -3295,7 +3467,7 @@ devilsownluck_Wheel.prototype = {
 				})([i],f), callback : (function() {
 					return function() {
 						devilsownluck_Money.add(10);
-						devilsownluck_SoundManager.play("cling1");
+						devilsownluck_SoundManager.play("coin");
 					};
 				})()});
 			} else {
@@ -3307,7 +3479,7 @@ devilsownluck_Wheel.prototype = {
 						textField1.set_defaultTextFormat(new openfl_text_TextFormat(null,36,16777215));
 						textField1.set_embedFonts(true);
 						textField1.set_selectable(false);
-						textField1.set_text(index1 <= 9?"0" + index1:"" + index1);
+						textField1.set_text("x2");
 						var matrix1 = new openfl_geom_Matrix();
 						matrix1.translate(-20,0);
 						matrix1.rotate(angle5 - Math.PI / 2);
@@ -3322,8 +3494,8 @@ devilsownluck_Wheel.prototype = {
 					};
 				})([i],f2), callback : (function() {
 					return function() {
-						devilsownluck_Money.add(10);
-						devilsownluck_SoundManager.play("cling2");
+						devilsownluck_Multiplier.add(1);
+						devilsownluck_SoundManager.play("coin");
 					};
 				})()});
 			}
@@ -3387,6 +3559,7 @@ devilsownluck_Wheel.prototype = {
 	,spin: function(_) {
 		this.spinning = true;
 		this.speed = 0.08 + Std.random(32) / 1000;
+		devilsownluck_SoundManager.play("roulette");
 	}
 	,update: function() {
 		if(this.spinning) {
@@ -5319,7 +5492,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 716588;
+	this.version = 789023;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
@@ -17912,244 +18085,6 @@ lime_system_Endian.LITTLE_ENDIAN.__enum__ = lime_system_Endian;
 lime_system_Endian.BIG_ENDIAN = ["BIG_ENDIAN",1];
 lime_system_Endian.BIG_ENDIAN.toString = $estr;
 lime_system_Endian.BIG_ENDIAN.__enum__ = lime_system_Endian;
-var lime_system_JNI = function() { };
-$hxClasses["lime.system.JNI"] = lime_system_JNI;
-lime_system_JNI.__name__ = ["lime","system","JNI"];
-lime_system_JNI.callMember = function(method,jobject,a) {
-	switch(a.length) {
-	case 0:
-		return method(jobject);
-	case 1:
-		return method(jobject,a[0]);
-	case 2:
-		return method(jobject,a[0],a[1]);
-	case 3:
-		return method(jobject,a[0],a[1],a[2]);
-	case 4:
-		return method(jobject,a[0],a[1],a[2],a[3]);
-	case 5:
-		return method(jobject,a[0],a[1],a[2],a[3],a[4]);
-	case 6:
-		return method(jobject,a[0],a[1],a[2],a[3],a[4],a[5]);
-	case 7:
-		return method(jobject,a[0],a[1],a[2],a[3],a[4],a[5],a[6]);
-	default:
-		return null;
-	}
-};
-lime_system_JNI.callStatic = function(method,a) {
-	switch(a.length) {
-	case 0:
-		return method();
-	case 1:
-		return method(a[0]);
-	case 2:
-		return method(a[0],a[1]);
-	case 3:
-		return method(a[0],a[1],a[2]);
-	case 4:
-		return method(a[0],a[1],a[2],a[3]);
-	case 5:
-		return method(a[0],a[1],a[2],a[3],a[4]);
-	case 6:
-		return method(a[0],a[1],a[2],a[3],a[4],a[5]);
-	case 7:
-		return method(a[0],a[1],a[2],a[3],a[4],a[5],a[6]);
-	default:
-		return null;
-	}
-};
-lime_system_JNI.createMemberField = function(className,memberName,signature) {
-	lime_system_JNI.init();
-	return null;
-};
-lime_system_JNI.createMemberMethod = function(className,memberName,signature,useArray,quietFail) {
-	if(quietFail == null) {
-		quietFail = false;
-	}
-	if(useArray == null) {
-		useArray = false;
-	}
-	lime_system_JNI.init();
-	return null;
-};
-lime_system_JNI.createStaticField = function(className,memberName,signature) {
-	lime_system_JNI.init();
-	return null;
-};
-lime_system_JNI.createStaticMethod = function(className,memberName,signature,useArray,quietFail) {
-	if(quietFail == null) {
-		quietFail = false;
-	}
-	if(useArray == null) {
-		useArray = false;
-	}
-	lime_system_JNI.init();
-	return null;
-};
-lime_system_JNI.getEnv = function() {
-	lime_system_JNI.init();
-	return null;
-};
-lime_system_JNI.init = function() {
-	if(!lime_system_JNI.initialized) {
-		lime_system_JNI.initialized = true;
-	}
-};
-lime_system_JNI.onCallback = function(object,method,args) {
-	var field = Reflect.field(object,method);
-	if(field != null) {
-		return field.apply(object,args);
-	}
-	haxe_Log.trace("onCallback - unknown field " + Std.string(method),{ fileName : "JNI.hx", lineNumber : 177, className : "lime.system.JNI", methodName : "onCallback"});
-	return null;
-};
-lime_system_JNI.postUICallback = function(callback) {
-	callback();
-};
-var lime_system_JNIMemberField = function(field) {
-	this.field = field;
-};
-$hxClasses["lime.system.JNIMemberField"] = lime_system_JNIMemberField;
-lime_system_JNIMemberField.__name__ = ["lime","system","JNIMemberField"];
-lime_system_JNIMemberField.prototype = {
-	field: null
-	,get: function(jobject) {
-		return null;
-	}
-	,set: function(jobject,value) {
-		return value;
-	}
-	,__class__: lime_system_JNIMemberField
-};
-var lime_system_JNIStaticField = function(field) {
-	this.field = field;
-};
-$hxClasses["lime.system.JNIStaticField"] = lime_system_JNIStaticField;
-lime_system_JNIStaticField.__name__ = ["lime","system","JNIStaticField"];
-lime_system_JNIStaticField.prototype = {
-	field: null
-	,get: function() {
-		return null;
-	}
-	,set: function(value) {
-		return value;
-	}
-	,__class__: lime_system_JNIStaticField
-};
-var lime_system_JNIMethod = function(method) {
-	this.method = method;
-};
-$hxClasses["lime.system.JNIMethod"] = lime_system_JNIMethod;
-lime_system_JNIMethod.__name__ = ["lime","system","JNIMethod"];
-lime_system_JNIMethod.prototype = {
-	method: null
-	,callMember: function(args) {
-		return null;
-	}
-	,callStatic: function(args) {
-		return null;
-	}
-	,getMemberMethod: function(useArray) {
-		if(useArray) {
-			return $bind(this,this.callMember);
-		} else {
-			return Reflect.makeVarArgs($bind(this,this.callMember));
-		}
-	}
-	,getStaticMethod: function(useArray) {
-		if(useArray) {
-			return $bind(this,this.callStatic);
-		} else {
-			return Reflect.makeVarArgs($bind(this,this.callStatic));
-		}
-	}
-	,__class__: lime_system_JNIMethod
-};
-var lime_system__$Locale_Locale_$Impl_$ = {};
-$hxClasses["lime.system._Locale.Locale_Impl_"] = lime_system__$Locale_Locale_$Impl_$;
-lime_system__$Locale_Locale_$Impl_$.__name__ = ["lime","system","_Locale","Locale_Impl_"];
-lime_system__$Locale_Locale_$Impl_$.__properties__ = {get_region:"get_region",get_language:"get_language",get_systemLocale:"get_systemLocale",set_currentLocale:"set_currentLocale",get_currentLocale:"get_currentLocale"}
-lime_system__$Locale_Locale_$Impl_$._new = function(value) {
-	return value;
-};
-lime_system__$Locale_Locale_$Impl_$.equals = function(a,b) {
-	var language = lime_system__$Locale_Locale_$Impl_$.get_language(a);
-	var region = lime_system__$Locale_Locale_$Impl_$.get_region(a);
-	var language2 = lime_system__$Locale_Locale_$Impl_$.get_language(b);
-	var region2 = lime_system__$Locale_Locale_$Impl_$.get_region(b);
-	var languageMatch = language == language2;
-	var regionMatch = region == region2;
-	if(!languageMatch && language != null && language2 != null) {
-		languageMatch = language.toLowerCase() == language2.toLowerCase();
-	}
-	if(!regionMatch && region != null && region2 != null) {
-		regionMatch = region.toLowerCase() == region2.toLowerCase();
-	}
-	if(languageMatch) {
-		return regionMatch;
-	} else {
-		return false;
-	}
-};
-lime_system__$Locale_Locale_$Impl_$.__init = function() {
-	if(lime_system__$Locale_Locale_$Impl_$.__systemLocale == null) {
-		var locale = null;
-		locale = navigator.language;
-		if(locale != null) {
-			lime_system__$Locale_Locale_$Impl_$.__systemLocale = locale;
-		} else {
-			lime_system__$Locale_Locale_$Impl_$.__systemLocale = "en-US";
-		}
-		lime_system__$Locale_Locale_$Impl_$.set_currentLocale(lime_system__$Locale_Locale_$Impl_$.__systemLocale);
-	}
-};
-lime_system__$Locale_Locale_$Impl_$.get_language = function(this1) {
-	if(this1 != null) {
-		var index = this1.indexOf("_");
-		if(index > -1) {
-			return this1.substring(0,index);
-		}
-		index = this1.indexOf("-");
-		if(index > -1) {
-			return this1.substring(0,index);
-		}
-	}
-	return this1;
-};
-lime_system__$Locale_Locale_$Impl_$.get_region = function(this1) {
-	if(this1 != null) {
-		var underscoreIndex = this1.indexOf("_");
-		var dotIndex = this1.indexOf(".");
-		var dashIndex = this1.indexOf("-");
-		if(underscoreIndex > -1) {
-			if(dotIndex > -1) {
-				return this1.substring(underscoreIndex + 1,dotIndex);
-			} else {
-				return this1.substring(underscoreIndex + 1);
-			}
-		} else if(dashIndex > -1) {
-			if(dotIndex > -1) {
-				return this1.substring(dashIndex + 1,dotIndex);
-			} else {
-				return this1.substring(dashIndex + 1);
-			}
-		}
-	}
-	return null;
-};
-lime_system__$Locale_Locale_$Impl_$.get_currentLocale = function() {
-	lime_system__$Locale_Locale_$Impl_$.__init();
-	return lime_system__$Locale_Locale_$Impl_$.currentLocale;
-};
-lime_system__$Locale_Locale_$Impl_$.set_currentLocale = function(value) {
-	lime_system__$Locale_Locale_$Impl_$.__init();
-	return lime_system__$Locale_Locale_$Impl_$.currentLocale = value;
-};
-lime_system__$Locale_Locale_$Impl_$.get_systemLocale = function() {
-	lime_system__$Locale_Locale_$Impl_$.__init();
-	return lime_system__$Locale_Locale_$Impl_$.__systemLocale;
-};
 var lime_system_System = function() { };
 $hxClasses["lime.system.System"] = lime_system_System;
 lime_system_System.__name__ = ["lime","system","System"];
@@ -42111,85 +42046,6 @@ openfl_system_ApplicationDomain.prototype = {
 	}
 	,__class__: openfl_system_ApplicationDomain
 };
-var openfl_system_Capabilities = function() { };
-$hxClasses["openfl.system.Capabilities"] = openfl_system_Capabilities;
-openfl_system_Capabilities.__name__ = ["openfl","system","Capabilities"];
-openfl_system_Capabilities.__properties__ = {get_version:"get_version",get_screenResolutionY:"get_screenResolutionY",get_screenResolutionX:"get_screenResolutionX",get_screenDPI:"get_screenDPI",get_pixelAspectRatio:"get_pixelAspectRatio",get_os:"get_os",get_language:"get_language"}
-openfl_system_Capabilities.hasMultiChannelAudio = function(type) {
-	return false;
-};
-openfl_system_Capabilities.get_language = function() {
-	var language = lime_system__$Locale_Locale_$Impl_$.get_language(lime_system__$Locale_Locale_$Impl_$.get_currentLocale());
-	if(language != null) {
-		language = language.toLowerCase();
-		switch(language) {
-		case "cs":case "da":case "de":case "en":case "es":case "fi":case "fr":case "hu":case "it":case "ja":case "ko":case "nb":case "nl":case "pl":case "pt":case "ru":case "sv":case "tr":
-			return language;
-		case "zh":
-			var region = lime_system__$Locale_Locale_$Impl_$.get_region(lime_system__$Locale_Locale_$Impl_$.get_currentLocale());
-			if(region != null) {
-				switch(region.toUpperCase()) {
-				case "HANT":case "TW":
-					return "zh-TW";
-				default:
-				}
-			}
-			return "zh-CN";
-		default:
-			return "xu";
-		}
-	}
-	return "en";
-};
-openfl_system_Capabilities.get_os = function() {
-	return "HTML5";
-};
-openfl_system_Capabilities.get_pixelAspectRatio = function() {
-	return 1;
-};
-openfl_system_Capabilities.get_screenDPI = function() {
-	var $window = openfl_Lib.application.__windows[0];
-	if($window != null) {
-		var display = $window.get_display();
-		if(display != null) {
-			return display.dpi;
-		}
-	}
-	return 0;
-};
-openfl_system_Capabilities.get_screenResolutionX = function() {
-	var stage = openfl_Lib.current.stage;
-	var resolutionX = 0;
-	if(stage.window != null) {
-		var display = stage.window.get_display();
-		if(display != null) {
-			resolutionX = display.currentMode.width;
-		}
-	}
-	if(resolutionX > 0) {
-		return resolutionX;
-	}
-	return stage.stageWidth;
-};
-openfl_system_Capabilities.get_screenResolutionY = function() {
-	var stage = openfl_Lib.current.stage;
-	var resolutionY = 0;
-	if(stage.window != null) {
-		var display = stage.window.get_display();
-		if(display != null) {
-			resolutionY = display.currentMode.height;
-		}
-	}
-	if(resolutionY > 0) {
-		return resolutionY;
-	}
-	return stage.stageHeight;
-};
-openfl_system_Capabilities.get_version = function() {
-	var value = "WEB";
-	value = "WEB" + (" " + StringTools.replace("4.5.0",".",",") + ",0");
-	return value;
-};
 var openfl_system_LoaderContext = function(checkPolicyFile,applicationDomain,securityDomain) {
 	if(checkPolicyFile == null) {
 		checkPolicyFile = false;
@@ -42216,33 +42072,6 @@ $hxClasses["openfl.system.SecurityDomain"] = openfl_system_SecurityDomain;
 openfl_system_SecurityDomain.__name__ = ["openfl","system","SecurityDomain"];
 openfl_system_SecurityDomain.prototype = {
 	__class__: openfl_system_SecurityDomain
-};
-var openfl_system__$TouchscreenType_TouchscreenType_$Impl_$ = {};
-$hxClasses["openfl.system._TouchscreenType.TouchscreenType_Impl_"] = openfl_system__$TouchscreenType_TouchscreenType_$Impl_$;
-openfl_system__$TouchscreenType_TouchscreenType_$Impl_$.__name__ = ["openfl","system","_TouchscreenType","TouchscreenType_Impl_"];
-openfl_system__$TouchscreenType_TouchscreenType_$Impl_$.fromString = function(value) {
-	switch(value) {
-	case "finger":
-		return 0;
-	case "none":
-		return 1;
-	case "stylus":
-		return 2;
-	default:
-		return null;
-	}
-};
-openfl_system__$TouchscreenType_TouchscreenType_$Impl_$.toString = function(value) {
-	switch(value) {
-	case 0:
-		return "finger";
-	case 1:
-		return "none";
-	case 2:
-		return "stylus";
-	default:
-		return null;
-	}
 };
 var openfl_text__$AntiAliasType_AntiAliasType_$Impl_$ = {};
 $hxClasses["openfl.text._AntiAliasType.AntiAliasType_Impl_"] = openfl_text__$AntiAliasType_AntiAliasType_$Impl_$;
@@ -46137,8 +45966,6 @@ lime_math_Matrix3.__identity = new lime_math_Matrix3();
 lime_math__$Matrix4_Matrix4_$Impl_$.__identity = [1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0];
 lime_system_BackgroundWorker.MESSAGE_COMPLETE = "__COMPLETE__";
 lime_system_BackgroundWorker.MESSAGE_ERROR = "__ERROR__";
-lime_system_JNI.alreadyCreated = new haxe_ds_StringMap();
-lime_system_JNI.initialized = false;
 lime_system_System.__directories = new haxe_ds_IntMap();
 lime_text__$TextDirection_TextDirection_$Impl_$.INVALID = 0;
 lime_text__$TextDirection_TextDirection_$Impl_$.LEFT_TO_RIGHT = 4;
@@ -46878,36 +46705,7 @@ openfl_net__$URLLoaderDataFormat_URLLoaderDataFormat_$Impl_$.BINARY = 0;
 openfl_net__$URLLoaderDataFormat_URLLoaderDataFormat_$Impl_$.TEXT = 1;
 openfl_net__$URLLoaderDataFormat_URLLoaderDataFormat_$Impl_$.VARIABLES = 2;
 openfl_system_ApplicationDomain.currentDomain = new openfl_system_ApplicationDomain(null);
-openfl_system_Capabilities.avHardwareDisable = true;
-openfl_system_Capabilities.cpuArchitecture = "";
-openfl_system_Capabilities.hasAccessibility = false;
-openfl_system_Capabilities.hasAudio = true;
-openfl_system_Capabilities.hasAudioEncoder = false;
-openfl_system_Capabilities.hasEmbeddedVideo = false;
-openfl_system_Capabilities.hasIME = false;
-openfl_system_Capabilities.hasMP3 = false;
-openfl_system_Capabilities.hasPrinting = false;
-openfl_system_Capabilities.hasScreenBroadcast = false;
-openfl_system_Capabilities.hasScreenPlayback = false;
-openfl_system_Capabilities.hasStreamingAudio = false;
-openfl_system_Capabilities.hasStreamingVideo = false;
-openfl_system_Capabilities.hasTLS = true;
-openfl_system_Capabilities.hasVideoEncoder = false;
-openfl_system_Capabilities.isDebugger = true;
-openfl_system_Capabilities.isEmbeddedInAcrobat = false;
-openfl_system_Capabilities.localFileReadDisable = true;
-openfl_system_Capabilities.manufacturer = "OpenFL Contributors";
-openfl_system_Capabilities.maxLevelIDC = 0;
-openfl_system_Capabilities.playerType = "OpenFL";
-openfl_system_Capabilities.screenColor = "color";
-openfl_system_Capabilities.serverString = "";
-openfl_system_Capabilities.supports32BitProcesses = false;
-openfl_system_Capabilities.supports64BitProcesses = false;
-openfl_system_Capabilities.touchscreenType = 0;
 openfl_system_SecurityDomain.currentDomain = new openfl_system_SecurityDomain();
-openfl_system__$TouchscreenType_TouchscreenType_$Impl_$.FINGER = 0;
-openfl_system__$TouchscreenType_TouchscreenType_$Impl_$.NONE = 1;
-openfl_system__$TouchscreenType_TouchscreenType_$Impl_$.STYLUS = 2;
 openfl_text__$AntiAliasType_AntiAliasType_$Impl_$.ADVANCED = 0;
 openfl_text__$AntiAliasType_AntiAliasType_$Impl_$.NORMAL = 1;
 openfl_text_Font.__registeredFonts = [];
@@ -47064,4 +46862,4 @@ openfl_utils__$Endian_Endian_$Impl_$.LITTLE_ENDIAN = 1;
 ApplicationMain.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
-//# sourceMappingURL=DevilsOwnLuck.js.map
+//# sourceMappingURL=Main.js.map
